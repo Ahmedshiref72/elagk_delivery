@@ -9,6 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:video_player/video_player.dart';
 
+import '../../../auth/presentation/components/logo_widget.dart';
+import '../../../auth/presentation/components/screen_background.dart';
+
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -29,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
     _controller = VideoPlayerController.asset(VideoAssets.splashIntro);
     _controller.initialize().then((_) {
       _controller.setLooping(false);
-      Timer(const Duration(milliseconds: DurationConstant.d1000), () {
+      Timer(const Duration(milliseconds: 3), () {
         setState(() {
           _controller.play();
           _visible = true;
@@ -39,7 +42,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
     print('ddddddddddddd');
     print(CacheHelper.getData(key: AppConstants.token));
-    Future.delayed(const Duration(seconds: DurationConstant.d6), () {
+    Future.delayed(const Duration(seconds:1), () {
 
       {
         navigateFinalTo(
@@ -62,12 +65,22 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: Center(
         child: Stack(
-          children: [
-            AnimatedOpacity(
+          children:  [
+
+            ScreenBackground(child: Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Center(child: LogoWidget()),
+                ],
+              ),
+            ))
+            /*AnimatedOpacity(
               opacity: _visible ? AppSize.s1 : AppSize.s1,
               duration: const Duration(milliseconds: DurationConstant.d3000),
               child: VideoPlayer(_controller),
-            ),
+            ),*/
           ],
         ),
       ),

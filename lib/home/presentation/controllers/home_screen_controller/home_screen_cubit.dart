@@ -33,7 +33,7 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
       emit(ProfileGetUserDataErrorState(error.toString()));
     });
   }
-  
+
   LocationPermission? permission;
 
   void getPermission() {
