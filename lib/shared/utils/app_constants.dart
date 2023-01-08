@@ -1,4 +1,3 @@
-import 'package:elagk_delivery/auth/data/models/login_model/login_model.dart';
 import 'package:elagk_delivery/drawer/data/models/profile/user_profile_model.dart';
 
 class AppConstants {
@@ -12,9 +11,6 @@ class AppConstants {
   static const String token = "token";
   static const String onBoarding = "onBoarding";
 
-  static const String pharmacyId = "pharmacyId";
-  static const String categoryId = "categoryId";
-  static const String defaultCategory = "defaultCategory";
   static double? myLat;
   static double? myLong;
   static String pharmacyLocation = '';

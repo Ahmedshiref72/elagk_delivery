@@ -49,5 +49,5 @@ PreferredSizeWidget homePageAppBar(
           ),
         ),
       ],
-      leading: const MenuWidget(), // TODO.
+      leading:  const MenuWidget(), // TODO.
     );

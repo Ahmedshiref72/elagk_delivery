@@ -1,10 +1,8 @@
 import 'package:device_preview/device_preview.dart';
-import 'package:elagk_delivery/auth/presentation/controller/activator/activator_cubit.dart';
 import 'package:elagk_delivery/auth/presentation/controller/confim_password/confirm_password_cubit.dart';
 import 'package:elagk_delivery/auth/presentation/controller/forget_passord_controller/forget_password_cubit.dart';
 import 'package:elagk_delivery/auth/presentation/controller/login_controller/login_cubit.dart';
 import 'package:elagk_delivery/auth/presentation/controller/otp_password/otp_password_cubit.dart';
-import 'package:elagk_delivery/auth/presentation/controller/register_controller/register_cubit.dart';
 import 'package:elagk_delivery/auth/presentation/controller/reset_password_controller/reset_password_cubit.dart';
 import 'package:elagk_delivery/drawer/presentation/controller/about_us_controller/about_us_cubit.dart';
 import 'package:elagk_delivery/drawer/presentation/controller/contact_us_controller/contact_us_cubit.dart';

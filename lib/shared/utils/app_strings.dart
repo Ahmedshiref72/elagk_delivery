@@ -175,10 +175,6 @@ class AppStrings {
   static const String area = "منطقة";
   static const String deliveryOrderIn30Minutes = "توصيل طلب \n 30 دقيقة";
   static const String deliveryDistance = "تبعد مسافة كم";
-  static const String noProducts = "لا يوجد منتجات في هذا القسم الآن";
-  static const String products = "المنتجات";
-  static const String newQuantity = "الكمية الجديدة";
-  static const String newPrice = "السعر الجديد";
   static const String edit = "تعديل";
   static const String cancel = "إلغاء";
   static const String saveChanges = "حفظ التعديلات";
@@ -199,41 +195,16 @@ class AppStrings {
   static const String newOrder = "طلب جديد";
   static const String noOrdersAvailable = "لا توجد طلبات جديدة";
   static const String pharmacyName = "اسم الصيدليه";
-  static const String writeYourOrder = "اكتب طلبك يدويا";
-  static const String addPrescriptionImage = "اضافه صوره الروشته";
-  static const String basket = "عربة التسوق";
-  static const String buy = "تاكيد الشراء";
-  static const String numOfPoints = "عدد النقاط";
-  static const String pointsReplace = "استبدال النقاط";
-  static const String pointsForReplace = "منتجات لاستبدال النقاط";
+
   static const String ordersInfo = "الطلب رقم";
 
 
   // One order details screen
   static const String orderNum = "الطلب رقم ";
-  static const String customerInfo = "بيانات العميل";
-  static const String customer = "العميل: ";
   static const String addressIs = "العنوان: ";
   static const String medicines = "الأدوية";
   static const String deliverPrice = "سعر التوصيل";
   static const String deliverTo= "التوصيل الى";
-  static const String prescriptionPrice = "سعر الروشتة";
-  static const String addDiscountCode= "اضافه كود الخصم";
-  static const String noPastOrders= "لا يوجد طلبات سابقه";
-
-  static const String sendPrescriptionAndDeliverPrice =
-      "ارسال سعر الروشتة والتوصيل";
-  static const String equipped = "تم التجهيز";
-  static const String refuseOrAnnoy = "رفض او ازعاج";
-  static const String price = "السعر ";
-  static const String pound = " جنيه";
-  static const String discount = "الخصم ";
-  static const String delivery = "الدليفري";
-  static const String total = "الإجمالي";
-  static const String quantity = "الكمية: ";
-  static const String piecePrice = "سعر القطعة: ";
-  static const String prescriptionDone = "تم ارسال طلب الروشته بنجاح";
-  static const String tryAgain = "من فضلك أعد المحاوله مره اخرى";
 
   // Appbar
   static const String logOut = "تسجيل الخروج";
