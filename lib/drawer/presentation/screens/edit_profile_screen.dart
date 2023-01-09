@@ -23,10 +23,10 @@ class EditProfileScreen extends StatelessWidget {
               onTap: () {
                 navigateTo(
                   context: context,
-                  screenRoute: Routes.basketScreen,
+                  screenRoute: Routes.notification,
                 );
               },
-              actionWidget: Icon(Icons.add),
+              actionWidget:Icon(Icons.notifications_none_outlined),
             ),
             body: BlocConsumer<ProfileCubit, ProfileStates>(
                 listener: (context, state)

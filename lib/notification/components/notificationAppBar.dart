@@ -1,53 +1,27 @@
 
-import 'package:elagk_delivery/home/presentation/components/menu_widget_component.dart';
-import 'package:elagk_delivery/shared/global/app_colors.dart';
-import 'package:elagk_delivery/shared/local/shared_preference.dart';
-import 'package:elagk_delivery/shared/utils/app_constants.dart';
-import 'package:elagk_delivery/shared/utils/app_values.dart';
 import 'package:flutter/material.dart';
 
-PreferredSizeWidget NotificationPageAppBar(
-    BuildContext context, {
-      required Widget title,
-      required Function()? onTap,
+import '../../shared/utils/app_values.dart';
 
-    }) =>
+PreferredSizeWidget NotificationAppBar({
+  required BuildContext context,
+  required String title,
+
+}) =>
     AppBar(
-      toolbarHeight:mediaQueryHeight(context)*.077 ,
       iconTheme: const IconThemeData(color: Colors.black),
-      title: title,
+      title: Text(title,
+          style: const TextStyle(
+              fontWeight: FontWeight.bold, color: Colors.black)),
       centerTitle: true,
       backgroundColor: Colors.transparent,
       elevation: AppSize.s0,
       automaticallyImplyLeading: true,
-      actions: [
-        Padding(
-          padding: const EdgeInsets.all(AppPadding.p5),
-          child: InkWell(
-            onTap: CacheHelper.getData(key: AppConstants.token) == null
-                ? () {
-              // TODO.
-              /*navigateTo(
-                      context: context,
-                      screenRoute: Routes.makeLoginScreen,
-                      arguments: const MakeLoginScreenArguments(title: 'الشراء'),
-                    );*/
-            } : onTap,
-            child: Container(
-              width: AppSize.s50,
-              height: AppSize.s50,
-              decoration: BoxDecoration(
+      leading: IconButton(
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        icon: Icon(Icons.arrow_back),
+      ),
 
-                border: Border.all(
-                  color: AppColors.offWhite,
-                  width: AppSize.s1,
-                ),
-                borderRadius: BorderRadius.circular(AppSize.s15),
-              ),
-              child: SizedBox()
-            ),
-          ),
-        ),
-      ],
-      leading: const MenuWidget(), // TODO.
     );

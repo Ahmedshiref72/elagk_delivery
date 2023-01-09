@@ -6,6 +6,7 @@ import 'package:elagk_delivery/home/presentation/components/search_widget.dart';
 import 'package:elagk_delivery/shared/utils/app_strings.dart';
 import 'package:elagk_delivery/shared/utils/app_values.dart';
 import 'package:flutter/material.dart';
+import '../../../shared/components/second_appBar.dart';
 import '../../../shared/utils/app_routes.dart';
 import '../../../shared/utils/navigation.dart';
 import '../components/orderInfoContent.dart';
@@ -20,16 +21,16 @@ class OrderInformation extends StatelessWidget {
       textDirection: TextDirection.rtl,
       child: SafeArea(
         child: Scaffold(
-            appBar: homePageAppBar(
-              title: AppBarTitle(text: AppStrings.ordersInfo,),
+            appBar:  SecondAppBar(
+              context: context,
+              title:AppStrings.orderDetails,
               onTap: () {
                 navigateTo(
                   context: context,
                   screenRoute: Routes.notification,
                 );
               },
-              actionWidget: const Icon(Icons.notifications_none_outlined),
-              context,
+              actionWidget: Icon(Icons.notifications_none_outlined),
             ),
             body:
             ScreenBackground(

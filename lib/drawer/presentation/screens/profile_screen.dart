@@ -18,14 +18,14 @@ class ProfileScreen extends StatelessWidget {
       child: SafeArea(
         child: Scaffold(
             // TODO: remove Scaffold qnd appBar.
-            appBar: fixedAppBar(
+            appBar:fixedAppBar(
               context: context,
               title: AppStrings.profile,
-              actionWidget: Icon(Icons.add),
+              actionWidget:  Icon(Icons.notifications_none_outlined),
               onTap: () {
                 navigateTo(
                   context: context,
-                  screenRoute: Routes.basketScreen,
+                  screenRoute: Routes.notification,
                 );
               },
             ),

@@ -24,11 +24,11 @@ class AboutUsScreen extends StatelessWidget {
           appBar: fixedAppBar(
             context: context,
             title: AppStrings.aboutUs,
-            actionWidget: Icon(Icons.add),
+            actionWidget:  Icon(Icons.notifications_none_outlined),
             onTap: () {
               navigateTo(
                 context: context,
-                screenRoute: Routes.basketScreen,
+                screenRoute: Routes.notification,
               );
             },
           ),

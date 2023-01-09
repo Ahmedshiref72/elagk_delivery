@@ -1,7 +1,3 @@
-
-
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../../shared/utils/app_routes.dart';
 import '../../../../shared/utils/app_values.dart';
@@ -27,11 +23,11 @@ class OrderItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children:
             [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.0),
                 child:
                 Padding(
-                  padding: const EdgeInsets.all(10.0),
+                  padding: EdgeInsets.all(10.0),
                   child:Image(
                     image: AssetImage(
                       'assets/images/order/4140048.png',

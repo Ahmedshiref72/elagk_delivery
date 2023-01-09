@@ -21,12 +21,12 @@ class ContactUsScreen extends StatelessWidget {
         child: Scaffold(
           appBar: fixedAppBar(
             context: context,
-            title: AppStrings.contactUs,
-            actionWidget: Icon(Icons.add),
+            title: AppStrings.contactWithUs,
+            actionWidget:  Icon(Icons.notifications_none_outlined),
             onTap: () {
               navigateTo(
                 context: context,
-                screenRoute: Routes.basketScreen,
+                screenRoute: Routes.notification,
               );
             },
           ),

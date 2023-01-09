@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../home/presentation/components/orders_components/my_devider_component.dart';
+import '../../shared/components/second_appBar.dart';
 import '../components/notificationAppBar.dart';
 import '../components/notification_item_widget.dart';
 
@@ -23,12 +24,9 @@ class NotificationScreen extends StatelessWidget {
       textDirection: TextDirection.rtl,
       child: SafeArea(
         child: Scaffold(
-            appBar: NotificationPageAppBar(
-              title: AppBarTitle(text: AppStrings.notifications,),
-              onTap: () {
-
-              },
-              context,
+            appBar: NotificationAppBar(
+              title:  AppStrings.notifications,
+              context: context,
             ),
             body:
             ScreenBackground(
