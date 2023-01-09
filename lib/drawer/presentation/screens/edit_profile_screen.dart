@@ -7,6 +7,8 @@ import 'package:elagk_delivery/shared/utils/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../shared/utils/app_bar_icon.dart';
+
 class EditProfileScreen extends StatelessWidget {
   const EditProfileScreen({Key? key}) : super(key: key);
 
@@ -26,7 +28,7 @@ class EditProfileScreen extends StatelessWidget {
                   screenRoute: Routes.notification,
                 );
               },
-              actionWidget:Icon(Icons.notifications_none_outlined),
+              actionWidget:AppBarIcon(),
             ),
             body: BlocConsumer<ProfileCubit, ProfileStates>(
                 listener: (context, state)

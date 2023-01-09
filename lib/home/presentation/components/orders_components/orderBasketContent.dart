@@ -10,12 +10,14 @@ class OrderInBasketContent extends StatelessWidget {
     required this.categoriesName,
     required this.imageSrc,
     required this.price,
+    required this.quantity,
 
   }) : super(key: key);
 
   final String categoriesName;
-  final double price;
+  final String price;
   final String imageSrc;
+  final String quantity;
 
 
 
@@ -81,8 +83,8 @@ class OrderInBasketContent extends StatelessWidget {
                           ),
                         ),
                         SizedBox(width: mediaQueryWidth(context) / AppSize.s20),
-                        const Text(
-                          '3',
+                         Text(
+                           quantity,
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 17

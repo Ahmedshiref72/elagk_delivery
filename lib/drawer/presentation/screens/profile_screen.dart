@@ -8,6 +8,8 @@ import 'package:elagk_delivery/shared/utils/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../shared/utils/app_bar_icon.dart';
+
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
 
@@ -21,7 +23,7 @@ class ProfileScreen extends StatelessWidget {
             appBar:fixedAppBar(
               context: context,
               title: AppStrings.profile,
-              actionWidget:  Icon(Icons.notifications_none_outlined),
+              actionWidget:  AppBarIcon(),
               onTap: () {
                 navigateTo(
                   context: context,

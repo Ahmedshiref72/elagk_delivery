@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:elagk_delivery/drawer/data/models/profile/user_profile_model.dart';
 import 'package:elagk_delivery/home/presentation/controllers/home_screen_controller/home_screen_state.dart';
 import 'package:elagk_delivery/shared/local/shared_preference.dart';
@@ -10,6 +11,8 @@ import 'package:flutter_geocoder/geocoder.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
+
+import '../../../data/models/orders_model.dart';
 
 class HomeScreenCubit extends Cubit<HomeScreenState> {
   HomeScreenCubit() : super(HomeScreenInitialState());
@@ -97,4 +100,28 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
     // print("${addresses.addressLine}");
     // print("permission:${permission.toString()}");
   }
+
+//orders
+
+  List<OrdersModel> Orders = [];
+
+  Future<void> getOrders() async {
+    Orders = [];
+    emit(GetOrdersLoadingState());
+    try {
+      Response response = await DioHelper.getData(
+          url: ApiConstants.getUserOrdersByUserId(
+              CacheHelper.getData(key: AppConstants.userId)));
+      Orders = (response.data as List)
+          .map((x) => OrdersModel.fromJson(x))
+          .toList();
+      Orders=Orders.reversed.toList();
+      emit(GetOrdersSuccessState(Orders));
+    } catch (error, stacktrace) {
+      emit(GetOrdersErrorState(error.toString()));
+
+      throw Exception("Exception occured: $error stackTrace: $stacktrace");
+    }
+  }
+
 }

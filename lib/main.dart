@@ -65,7 +65,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (BuildContext context) =>ContactUsCubit()..getContactUs()),
           BlocProvider(create: (BuildContext context) =>AboutUsCubit()..getAboutUs()),
 
-          BlocProvider(create: (BuildContext context) =>HomeScreenCubit()..getUserProfileData()),
+          BlocProvider(create: (BuildContext context) =>HomeScreenCubit()..getUserProfileData()..getOrders()),
 
 
 

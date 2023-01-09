@@ -9,13 +9,14 @@ import '../../../shared/utils/app_assets.dart';
 import '../../../shared/utils/app_constants.dart';
 import '../../../shared/utils/app_strings.dart';
 import '../../../shared/utils/app_values.dart';
+import '../../data/models/orders_model.dart';
 import 'orders_components/my_devider_component.dart';
 import 'orders_components/orderBasketContent.dart';
 import 'orders_components/order_item_content.dart';
 
 class OrderInformationContent extends StatelessWidget {
-  const OrderInformationContent({Key? key}) : super(key: key);
-
+   OrderInformationContent({Key? key, this.Order}) : super(key: key);
+  final OrdersModel? Order;
   @override
   Widget build(BuildContext context) {
     return Directionality(
@@ -35,11 +36,25 @@ class OrderInformationContent extends StatelessWidget {
               Text(
                 AppStrings.deliverTo,
                 style: Theme.of(context).textTheme.displayLarge,
-              )
+              ),
+              Spacer(),
+              Container(
+                width: AppSize.s40,
+                height: AppSize.s40,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(
+                    color: AppColors.offWhite,
+                    width: AppSize.s1,
+                  ),
+                  borderRadius: BorderRadius.circular(AppSize.s15),
+                ),
+                child: Icon(Icons.my_location),
+              ),
             ],
           ),
-          const Text(
-            'مدينة نصر - التجمع الخامس -شارع افريقياالسينمائى',
+           Text(
+            Order!.address.toString(),
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
           ),
           SizedBox(
@@ -60,24 +75,35 @@ class OrderInformationContent extends StatelessWidget {
                 AppStrings.pharmacyName,
                 style: Theme.of(context).textTheme.displayLarge,
               ),
-              Spacer(),
-              Container(
-                width: AppSize.s40,
-                height: AppSize.s40,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  border: Border.all(
-                    color: AppColors.offWhite,
-                    width: AppSize.s1,
-                  ),
-                  borderRadius: BorderRadius.circular(AppSize.s15),
-                ),
-                child: Icon(Icons.my_location),
-              ),
+
             ],
           ),
           Text(
             'مدينة نصر - التجمع الخامس -شارع افريقياالسينمائى',
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Row(
+            children: [
+              Image.asset(
+                'assets/images/login/boss(1).png',
+                width: 30,
+                height: 30,
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Text(
+                AppStrings.clientName,
+                style: Theme.of(context).textTheme.displayLarge,
+              ),
+
+            ],
+          ),
+          Text(
+            'ahmed mohamed shiref',
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
           ),
           const SizedBox(
@@ -89,40 +115,42 @@ class OrderInformationContent extends StatelessWidget {
               shrinkWrap: true,
               itemBuilder: (context, index) {
                 return OrderInBasketContent(
-                  categoriesName: 'ماء ورد من ايفو',
+                  categoriesName: 'Order!.name.',
                   imageSrc: ImageAssets.elagkWord,
-                  price: 3,
+                  price:3.toString(),
+                  quantity: 'Order!.quantity',
                 );
               },
               separatorBuilder: (context, index) => SizedBox(),
-              itemCount: 3),
+              itemCount: Order!.cartViews!.length,
+          ),
 
           const SizedBox(
             height: 20,
           ),
           Row(
-            children: const [
+            children:  [
               Text(
                 "السعر",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
               Spacer(),
               Text(
-                "150 جنية",
+                Order!.totalPrice!.toString(),
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
             ],
           ),
           SizedBox(height: mediaQueryHeight(context) / AppSize.s50),
           Row(
-            children: const [
+            children:  [
               Text(
                 "الديلفري",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
               Spacer(),
               Text(
-                "15 جنية",
+                Order!.fees.toString(),
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
             ],
@@ -131,14 +159,14 @@ class OrderInformationContent extends StatelessWidget {
           DottedLine(dashColor: Colors.grey, dashLength: 11, dashGapLength: 10),
           SizedBox(height: mediaQueryHeight(context) / AppSize.s50),
           Row(
-            children: const [
+            children:  [
               Text(
                 "اجمالي السعر",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20,color: Colors.green),
               ),
               Spacer(),
               Text(
-                "165 جنية",
+                Order!.totalPrice!.toString(),
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20,

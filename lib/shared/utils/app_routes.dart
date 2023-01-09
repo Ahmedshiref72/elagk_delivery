@@ -6,6 +6,7 @@ import 'package:elagk_delivery/auth/presentation/screens/reset_password/reset_pa
 import 'package:elagk_delivery/drawer/presentation/components/home_drawe_widget.dart';
 import 'package:elagk_delivery/drawer/presentation/components/profile_components/reset_password_byOld.dart';
 import 'package:elagk_delivery/drawer/presentation/screens/edit_profile_screen.dart';
+import 'package:elagk_delivery/home/data/models/orders_model.dart';
 import 'package:elagk_delivery/home/presentation/screens/home_screen.dart';
 import 'package:elagk_delivery/notification/screens/norification_screen.dart';
 import 'package:elagk_delivery/onboarding/screens/onboarding_screen.dart';
@@ -18,6 +19,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
 
 import '../../auth/presentation/screens/vrification/activator_screen.dart';
+import '../../home/data/models/orders_model.dart';
+import '../../home/data/models/orders_model.dart';
 import '../../home/presentation/screens/order_info.dart';
 
 class Routes {
@@ -76,8 +79,13 @@ class RouteGenerator {
       return MaterialPageRoute(builder: (_) => const EditProfileScreen());
       case Routes.loginScreen:
         return MaterialPageRoute(builder: (_) => const LoginScreen());
-        case Routes.orderInfo:
-        return MaterialPageRoute(builder: (_) => const OrderInformation());
+
+      case Routes.orderInfo:
+        return MaterialPageRoute(builder: (_) {
+          final ordersModel = routeSettings.arguments as OrdersModel;
+          // final pharmacyLocation = routeSettings.arguments as String;
+          return OrderInformation(Order: ordersModel,);
+        });
 
       case Routes.forgetPasswordScreen:
         return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());

@@ -21,7 +21,7 @@ class SearchWidget extends StatelessWidget {
           children: [
             Container(
               color:  Color(0x0035a9a3),
-              width: width * .75,
+              width: width * .80,
               height: 200,
               padding: const EdgeInsets.all(AppPadding.p10),
               child: Card(

@@ -10,6 +10,8 @@ import 'package:elagk_delivery/shared/utils/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../shared/utils/app_bar_icon.dart';
+
 class ContactUsScreen extends StatelessWidget {
   const ContactUsScreen({Key? key}) : super(key: key);
 
@@ -22,7 +24,7 @@ class ContactUsScreen extends StatelessWidget {
           appBar: fixedAppBar(
             context: context,
             title: AppStrings.contactWithUs,
-            actionWidget:  Icon(Icons.notifications_none_outlined),
+            actionWidget:  AppBarIcon(),
             onTap: () {
               navigateTo(
                 context: context,
