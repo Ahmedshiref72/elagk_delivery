@@ -59,3 +59,17 @@ class GetOrdersErrorState extends HomeScreenState
   GetOrdersErrorState(this.error);
 }
 
+//filter
+
+class FilterOrdersLoadingState extends HomeScreenState {}
+class FilterOrdersSuccessState extends HomeScreenState {}
+
+//follow
+class FollowOrderLoadingState  extends HomeScreenState {}
+class FollowOrderSuccessState  extends HomeScreenState {}
+class FollowOrderErrorState  extends HomeScreenState
+{
+  final String error;
+
+  FollowOrderErrorState(this.error);
+}

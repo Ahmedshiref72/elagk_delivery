@@ -1,3 +1,4 @@
+import 'package:elagk_delivery/home/presentation/controllers/home_screen_controller/home_screen_cubit.dart';
 import 'package:elagk_delivery/home/presentation/controllers/order_controller/order_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -9,7 +10,9 @@ import '../../../data/models/orders_model.dart';
   Widget OrderItem({required context,required OrdersModel ordersModel}) =>
       InkWell(
         onTap: (){
-          OrderCubit.get(context).folowOrders(orderId: ordersModel.orderId!);
+          OrderCubit.get(context).getPharmacyById(pharmacyId: ordersModel.pharmacyId!.toInt());
+          HomeScreenCubit.get(context).folowOrders(orderId: ordersModel.orderId!);
+
           navigateTo(
               context: context,
               screenRoute: Routes.orderInfo,
@@ -59,7 +62,8 @@ import '../../../data/models/orders_model.dart';
                       Text(
 
                           '${DateFormat("yyyy-MM-dd").format(DateTime.parse(
-                              ordersModel.createdAt.toString()))}', style:
+                              ordersModel.createdAt.toString()))}',
+                          style:
                       TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
@@ -69,11 +73,8 @@ import '../../../data/models/orders_model.dart';
 
                     ],
                   ),
-
-
                   Row(
                     children: [
-
                       Icon(Icons.location_on_outlined,color: Colors.green,size: 15,),
                       Container(
                         width: mediaQueryWidth(context)*.6,

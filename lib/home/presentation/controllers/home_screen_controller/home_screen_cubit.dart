@@ -1,7 +1,7 @@
-import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:elagk_delivery/drawer/data/models/profile/user_profile_model.dart';
 import 'package:elagk_delivery/home/presentation/controllers/home_screen_controller/home_screen_state.dart';
+import 'package:elagk_delivery/home/presentation/controllers/order_controller/order_cubit.dart';
 import 'package:elagk_delivery/shared/local/shared_preference.dart';
 import 'package:elagk_delivery/shared/network/api_constants.dart';
 import 'package:elagk_delivery/shared/network/dio_helper.dart';
@@ -11,8 +11,7 @@ import 'package:flutter_geocoder/geocoder.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:url_launcher/url_launcher.dart';
-
+import '../../../data/models/accepted_model.dart';
 import '../../../data/models/orders_model.dart';
 
 class HomeScreenCubit extends Cubit<HomeScreenState> {
@@ -119,11 +118,6 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
           .map((x) => OrdersModel.fromJson(x))
           .toList();
       Orders=Orders.reversed.toList();
-     /* carts = (response.data as List)
-          .map((x) => CartViews.fromJson(x))
-          .toList();
-      carts=carts.reversed.toList();*/
-
       print(CacheHelper.getData(key: AppConstants.userId));
       print(Orders.length);
      // print(carts.length);
@@ -135,11 +129,44 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
     }
   }
 
+  //follow
 
+  StepperFollowModel? acceptedModel;
 
-  void phoneCall()
+  Future<void> folowOrders({required int orderId}) async {
+    emit(FollowOrderLoadingState());
+    print('jjjjjjjjjjjjjj');
+    print(orderId.toString());
+    DioHelper.getData(
+        url: ApiConstants.followOrder(orderId))
+        .then((value) {
+      acceptedModel = StepperFollowModel.fromJson(value.data);
+      print('jjjjjjjjjjjjjj');
+      print(acceptedModel!.isAcceptedByDelivery!);
+      emit(FollowOrderSuccessState());
+    }).catchError((oError) {
+      print(oError.toString());
+      emit(FollowOrderErrorState(oError.toString()));
+    });
+  }
+
+  //filter
+  List<OrdersModel> filteredOrders=[];
+  void filterOrders()
   {
+    filteredOrders=[];
+    emit(FilterOrdersLoadingState());
+    Orders.forEach((element)
+    {
+      folowOrders(orderId: ordersModel!.orderId!.toInt());
+      if(!acceptedModel!.isAcceptedByPharmacy!)
+      {
+        filteredOrders.add(element);
+      }
+    });
+    emit(FilterOrdersSuccessState());
 
   }
+
 
 }
