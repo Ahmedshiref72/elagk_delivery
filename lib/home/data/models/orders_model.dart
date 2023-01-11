@@ -1,6 +1,7 @@
-class  OrdersModel {
+class OrdersModel {
   int? orderId;
   bool? status;
+  bool? isRejected;
   double? distance;
   double? destinationLatitude;
   double? destinationLongitude;
@@ -9,14 +10,16 @@ class  OrdersModel {
   String? createdAt;
   String? updatedAt;
   double? totalPrice;
-  Null? userId;
+  String? userId;
   int? pharmacyId;
   int? cartId;
   List<CartViews>? cartViews;
+  Delivery? delivery;
 
-   OrdersModel(
+  OrdersModel(
       {this.orderId,
         this.status,
+        this.isRejected,
         this.distance,
         this.destinationLatitude,
         this.destinationLongitude,
@@ -28,11 +31,13 @@ class  OrdersModel {
         this.userId,
         this.pharmacyId,
         this.cartId,
-        this.cartViews});
+        this.cartViews,
+        this.delivery});
 
-   OrdersModel.fromJson(Map<String, dynamic> json) {
+  OrdersModel.fromJson(Map<String, dynamic> json) {
     orderId = json['orderId'];
     status = json['status'];
+    isRejected = json['isRejected'];
     distance = json['distance'];
     destinationLatitude = json['destinationLatitude'];
     destinationLongitude = json['destinationLongitude'];
@@ -50,12 +55,16 @@ class  OrdersModel {
         cartViews!.add(new CartViews.fromJson(v));
       });
     }
+    delivery = json['delivery'] != null
+        ? new Delivery.fromJson(json['delivery'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['orderId'] = this.orderId;
     data['status'] = this.status;
+    data['isRejected'] = this.isRejected;
     data['distance'] = this.distance;
     data['destinationLatitude'] = this.destinationLatitude;
     data['destinationLongitude'] = this.destinationLongitude;
@@ -69,6 +78,9 @@ class  OrdersModel {
     data['cartId'] = this.cartId;
     if (this.cartViews != null) {
       data['cartViews'] = this.cartViews!.map((v) => v.toJson()).toList();
+    }
+    if (this.delivery != null) {
+      data['delivery'] = this.delivery!.toJson();
     }
     return data;
   }
@@ -111,6 +123,31 @@ class CartViews {
     data['imageUrl'] = this.imageUrl;
     data['quantity'] = this.quantity;
     data['price'] = this.price;
+    return data;
+  }
+}
+
+class Delivery {
+  String? id;
+  String? firstName;
+  String? lastName;
+  List<String>? phones;
+
+  Delivery({this.id, this.firstName, this.lastName, this.phones});
+
+  Delivery.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    firstName = json['firstName'];
+    lastName = json['lastName'];
+    phones = json['phones'].cast<String>();
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['firstName'] = this.firstName;
+    data['lastName'] = this.lastName;
+    data['phones'] = this.phones;
     return data;
   }
 }

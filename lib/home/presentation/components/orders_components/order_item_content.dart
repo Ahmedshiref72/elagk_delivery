@@ -1,3 +1,4 @@
+import 'package:elagk_delivery/home/presentation/controllers/order_controller/order_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../../../../shared/utils/app_routes.dart';
@@ -8,6 +9,7 @@ import '../../../data/models/orders_model.dart';
   Widget OrderItem({required context,required OrdersModel ordersModel}) =>
       InkWell(
         onTap: (){
+          OrderCubit.get(context).folowOrders(orderId: ordersModel.orderId!);
           navigateTo(
               context: context,
               screenRoute: Routes.orderInfo,
@@ -73,16 +75,21 @@ import '../../../data/models/orders_model.dart';
                     children: [
 
                       Icon(Icons.location_on_outlined,color: Colors.green,size: 15,),
-                      Text(
+                      Container(
+                        width: mediaQueryWidth(context)*.6,
+                        child: Text(
 
-                      ordersModel.address.toString(),
-                          style:
-                      TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black
+                        ordersModel.address.toString(),
+                            overflow: TextOverflow.ellipsis,
+                            style:
+                        TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black
 
-                      )),
+                        )),
+                      ),
+
                     ],
                   )
                 ],

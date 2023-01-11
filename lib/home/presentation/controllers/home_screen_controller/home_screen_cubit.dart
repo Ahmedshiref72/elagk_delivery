@@ -11,6 +11,7 @@ import 'package:flutter_geocoder/geocoder.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../data/models/orders_model.dart';
 
@@ -102,26 +103,43 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
   }
 
 //orders
-
+  OrdersModel? ordersModel;
   List<OrdersModel> Orders = [];
+  //List<CartViews> carts = [];
 
   Future<void> getOrders() async {
     Orders = [];
+
     emit(GetOrdersLoadingState());
     try {
       Response response = await DioHelper.getData(
-          url: ApiConstants.getUserOrdersByUserId(
+          url:  ApiConstants.getUserOrdersByDeliveryId(
               CacheHelper.getData(key: AppConstants.userId)));
       Orders = (response.data as List)
           .map((x) => OrdersModel.fromJson(x))
           .toList();
       Orders=Orders.reversed.toList();
+     /* carts = (response.data as List)
+          .map((x) => CartViews.fromJson(x))
+          .toList();
+      carts=carts.reversed.toList();*/
+
+      print(CacheHelper.getData(key: AppConstants.userId));
+      print(Orders.length);
+     // print(carts.length);
       emit(GetOrdersSuccessState(Orders));
     } catch (error, stacktrace) {
       emit(GetOrdersErrorState(error.toString()));
 
       throw Exception("Exception occured: $error stackTrace: $stacktrace");
     }
+  }
+
+
+
+  void phoneCall()
+  {
+
   }
 
 }

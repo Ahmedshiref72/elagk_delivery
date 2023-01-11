@@ -105,7 +105,7 @@ class LoginScreen extends StatelessWidget {
                             if (state.loginModel.roles![0]
                                     .toString()
                                     .toUpperCase() ==
-                                'USER') {
+                                'DELIVERY') {
                               showToast(
                                   text: 'Login Successfully',
                                   state: ToastStates.SUCCESS);

@@ -58,3 +58,4 @@ class GetOrdersErrorState extends HomeScreenState
 
   GetOrdersErrorState(this.error);
 }
+

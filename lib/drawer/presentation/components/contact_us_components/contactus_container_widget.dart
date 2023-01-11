@@ -23,7 +23,7 @@ class ContactUsContainer extends StatelessWidget {
       height: AppSize.s70,
       padding: const EdgeInsets.all(AppPadding.p10),
       decoration: BoxDecoration(
-        color: Colors.white,
+
         borderRadius: BorderRadius.circular(AppSize.s10),
       ),
       child: Row(children: [
@@ -33,18 +33,20 @@ class ContactUsContainer extends StatelessWidget {
           height: AppSize.s26,
           fit: BoxFit.cover,
         ),
-        const SizedBox(width: AppSize.s15),
+        const SizedBox(width: AppSize.s100),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Flexible(
-              child: Text(
-                title,
-                maxLines: AppSize.si2,
-                overflow: TextOverflow.ellipsis,
-                style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                      color: Colors.black,
-                    ),
+              child: Center(
+                child: Text(
+                  title,
+                  maxLines: AppSize.si2,
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                        color: Colors.black,
+                      ),
+                ),
               ),
             ),
             Flexible(

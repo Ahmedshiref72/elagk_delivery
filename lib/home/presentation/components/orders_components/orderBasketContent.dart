@@ -15,7 +15,7 @@ class OrderInBasketContent extends StatelessWidget {
   }) : super(key: key);
 
   final String categoriesName;
-  final String price;
+  final double price;
   final String imageSrc;
   final String quantity;
 
@@ -39,15 +39,20 @@ class OrderInBasketContent extends StatelessWidget {
 
               ClipRRect(
                 borderRadius: BorderRadius.circular(AppSize.s25),
-                child: Image(
-                  image: AssetImage('${imageSrc}'),
-                  width: 100,
-                  height: 120,
+                child:  ClipRRect(
+                  borderRadius: BorderRadius.circular(AppSize.s25),
+                  child: Image(
+                    image: NetworkImage(
+                      "${imageSrc}",
+                    ),
+                    width: 80,
+                    height: 120,
+                  ),
                 ),
               ),
-              SizedBox(width: 20,),
+              SizedBox(width: 10,),
               Padding(
-                padding: const EdgeInsets.only(top: 20.0),
+                padding: const EdgeInsets.only(top: 10.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,7 +70,7 @@ class OrderInBasketContent extends StatelessWidget {
                         ),
                         SizedBox(width: mediaQueryWidth(context) / AppSize.s5),
                         Text(
-                          '15 جنيه ',
+                          price.toString(),
                           style:const TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 16

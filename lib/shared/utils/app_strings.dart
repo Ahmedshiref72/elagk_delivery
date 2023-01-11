@@ -197,6 +197,7 @@ class AppStrings {
   static const String noOrdersAvailable = "لا توجد طلبات جديدة";
   static const String pharmacyName = "اسم الصيدليه";
   static const String clientName = "اسم العميل";
+  static const String clientPhone = "رقم العميل";
 
   static const String ordersInfo = "الطلب رقم";
 
