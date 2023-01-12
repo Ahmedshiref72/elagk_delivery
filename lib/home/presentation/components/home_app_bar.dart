@@ -6,6 +6,8 @@ import 'package:elagk_delivery/shared/utils/app_constants.dart';
 import 'package:elagk_delivery/shared/utils/app_values.dart';
 import 'package:flutter/material.dart';
 
+import '../../../notification/controller/notification_cubit.dart';
+
 PreferredSizeWidget homePageAppBar(
     BuildContext context, {
       required Widget title,
@@ -33,18 +35,43 @@ PreferredSizeWidget homePageAppBar(
                       arguments: const MakeLoginScreenArguments(title: 'الشراء'),
                     );*/
             } : onTap,
-            child: Container(
-              width: AppSize.s50,
-              height: AppSize.s50,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                border: Border.all(
-                  color: AppColors.offWhite,
-                  width: AppSize.s1,
-                ),
-                borderRadius: BorderRadius.circular(AppSize.s15),
-              ),
-              child: Center(child: actionWidget),
+            child: Stack(
+               children: [
+                 Container(
+                   width: AppSize.s50,
+                   height: AppSize.s50,
+                   decoration: BoxDecoration(
+                     color: Colors.white,
+                     border: Border.all(
+                       color: AppColors.offWhite,
+                       width: AppSize.s1,
+                     ),
+                     borderRadius: BorderRadius.circular(AppSize.s15),
+                   ),
+                   child: Center(child: actionWidget),
+                 ),
+                 Positioned(
+                   bottom:AppSize.s30,
+                   left: AppSize.s8,
+                   child: Container(
+                     decoration: BoxDecoration(
+                       borderRadius: BorderRadius.circular(25),
+                       color: Colors.red,
+                     ),
+                     width: AppSize.s16,
+                     height: AppSize.s16,
+                     child: Center(
+                       child: Text('${NotificationCubit
+                           .get(context)
+                           .notifications
+                           .length}', style: TextStyle(
+                         fontSize: 9,
+
+                       ),),
+                     ),
+                   ),
+                 ),
+               ],
             ),
           ),
         ),

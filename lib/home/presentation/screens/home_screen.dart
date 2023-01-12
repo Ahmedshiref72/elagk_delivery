@@ -5,6 +5,8 @@ import 'package:elagk_delivery/home/presentation/components/orders_components/or
 import 'package:elagk_delivery/home/presentation/components/search_widget.dart';
 import 'package:elagk_delivery/home/presentation/controllers/home_screen_controller/home_screen_cubit.dart';
 import 'package:elagk_delivery/home/presentation/controllers/home_screen_controller/home_screen_state.dart';
+import 'package:elagk_delivery/notification/data/notification_model.dart';
+import 'package:elagk_delivery/shared/global/app_colors.dart';
 import 'package:elagk_delivery/shared/utils/app_strings.dart';
 import 'package:elagk_delivery/shared/utils/app_values.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +17,7 @@ import '../../../shared/utils/navigation.dart';
 import '../components/orderContent.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+   HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,13 +34,22 @@ class HomeScreen extends StatelessWidget {
                       navigateTo(
                       context: context,
                       screenRoute: Routes.notification,
+
+
                     );
                   },
                   actionWidget: AppBarIcon(),
                   context,
                 ),
-                body:OrdersContents()
+                body:OrdersContents(),
+              floatingActionButton: FloatingActionButton(
+                onPressed: () {
+                  HomeScreenCubit.get(context).getOrders();  },
+                backgroundColor: AppColors.primary,
+                child: Icon(Icons.refresh),
+              ),
             ),
+
             // HomeScreen
           ),
         );

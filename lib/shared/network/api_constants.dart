@@ -64,8 +64,9 @@ class ApiConstants {
   static String postOrder(String userId,int orderId)
   => "$baseUrl/OrderStepper/OnAcceptedDeliveryOrder/$userId/$orderId";
 
-  static String getPharmacyByID(int pharmacyId) =>
-      "$baseUrl/Pharmacies/GetPharmacy/$pharmacyId";
+  static String getPharmacyByID(int pharmacyId) => "$baseUrl/Pharmacies/GetPharmacy/$pharmacyId";
+
+  static String getNotifications(String userId) => "$baseUrl/Notifications/$userId";
 
 
 

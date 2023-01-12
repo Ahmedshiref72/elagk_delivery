@@ -27,6 +27,7 @@ class AppStrings {
   // offline screen
   static const String noInternetConnection = "لا يوجد اتصال بالإنترنت";
   static const String noOrders = "لا يوجد طلبات";
+  static const String noNotificationsYet = "لا يوجد تنبيهات";
   static const String failedToConnect =
       "فشل الاتصال بالإنترنت، يرجى التحقق من اتصال شبكة هاتفك";
 

@@ -20,8 +20,7 @@ class OrdersContents extends StatelessWidget {
         // TODO: implement listener
       },
       builder: (context, state) {
-        if (state is GetOrdersSuccessState &&
-            HomeScreenCubit.get(context).Orders.isNotEmpty ) {
+        if (HomeScreenCubit.get(context).Orders.isNotEmpty ) {
           return Column(
             children: [
 
@@ -43,12 +42,10 @@ class OrdersContents extends StatelessWidget {
               ),
             ],
           );
-        }else if(state is GetOrdersSuccessState &&
-            HomeScreenCubit.get(context).Orders.isEmpty)
+        }else if(HomeScreenCubit.get(context).Orders.isEmpty)
         {
           return Center(child: NoDataWidget(AppStrings.noOrders));
         }
-
         else
           return Center(
             child: CircularProgressIndicator(

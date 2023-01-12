@@ -28,36 +28,38 @@ class OrderInBasketContent extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
-          height: AppSize.s120,
-          width: mediaQueryWidth(context)*.9,
+          height: AppSize.s110,
+          width: mediaQueryWidth(context)*.952,
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(AppSize.s15),
+            borderRadius: BorderRadius.circular(AppSize.s20),
           ),
           child: Row(
             children: [
 
               ClipRRect(
-                borderRadius: BorderRadius.circular(AppSize.s25),
+                borderRadius: BorderRadius.circular(AppSize.s15),
                 child:  ClipRRect(
-                  borderRadius: BorderRadius.circular(AppSize.s25),
+                  borderRadius: BorderRadius.circular(AppSize.s15),
                   child: Image(
+
                     image: NetworkImage(
                       "${imageSrc}",
+
                     ),
-                    width: 80,
-                    height: 120,
+                    width: 60,
+                    height: 60,
                   ),
                 ),
               ),
-              SizedBox(width: 10,),
+              SizedBox(width:mediaQueryWidth(context)/18,),
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: mediaQueryHeight(context) / AppSize.s40),
+                    SizedBox(height: mediaQueryHeight(context) / AppSize.s50),
                     Row(
                       children: [
                         Text(
@@ -68,9 +70,9 @@ class OrderInBasketContent extends StatelessWidget {
                               fontSize: 17
                           ),
                         ),
-                        SizedBox(width: mediaQueryWidth(context) / AppSize.s5),
+                        SizedBox(width: mediaQueryWidth(context) / AppSize.s7),
                         Text(
-                          price.toString(),
+                          ' ${price} جنية   ',
                           style:const TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 16

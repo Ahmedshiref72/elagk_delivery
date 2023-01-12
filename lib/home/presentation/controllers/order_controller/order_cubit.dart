@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
-import 'package:elagk_delivery/home/data/models/GetPharmacyByIDModel.dart';
 import 'package:elagk_delivery/home/data/models/accepted_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../shared/local/shared_preference.dart';
@@ -33,22 +32,6 @@ class OrderCubit extends Cubit<OrderState> {
 
 
 
-  //get pharmacy
-  GetPharmacyByIDModel?getPharmacyByIDModel;
 
-  Future<void> getPharmacyById({required int pharmacyId}) async {
-
-    emit(getPharmacyByIdLoadingState());
-    DioHelper.getData(url: ApiConstants.getPharmacyByID(pharmacyId))
-        .then((value) {
-      getPharmacyByIDModel = GetPharmacyByIDModel.fromJson(value.data);
-
-      emit(getPharmacyByIdSuccessState());
-      print(getPharmacyByIDModel!.pharmacyName.toString());
-    }).catchError((oError) {
-      print(oError.toString());
-      emit(getPharmacyByIdErrorState(oError.toString()));
-    });
-  }
 
 }

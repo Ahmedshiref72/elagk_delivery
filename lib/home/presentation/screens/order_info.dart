@@ -8,11 +8,14 @@ import 'package:elagk_delivery/shared/utils/app_strings.dart';
 import 'package:elagk_delivery/shared/utils/app_values.dart';
 import 'package:flutter/material.dart';
 import '../../../shared/components/second_appBar.dart';
+import '../../../shared/global/app_colors.dart';
 import '../../../shared/utils/app_bar_icon.dart';
 import '../../../shared/utils/app_routes.dart';
 import '../../../shared/utils/navigation.dart';
 import '../components/orderInfoContent.dart';
 import '../components/orders_components/my_devider_component.dart';
+import '../controllers/home_screen_controller/home_screen_cubit.dart';
+import '../controllers/order_controller/order_cubit.dart';
 
 class OrderInformation extends StatelessWidget {
 
@@ -49,7 +52,15 @@ class OrderInformation extends StatelessWidget {
                   ),
                 ),
               ),
-            )),
+            ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+
+               },
+            backgroundColor: AppColors.primary,
+            child: Icon(Icons.refresh),
+          ),
+        ),
         // HomeScreen
       ),
     );

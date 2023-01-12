@@ -8,6 +8,7 @@ import 'package:elagk_delivery/drawer/presentation/components/profile_components
 import 'package:elagk_delivery/drawer/presentation/screens/edit_profile_screen.dart';
 import 'package:elagk_delivery/home/data/models/orders_model.dart';
 import 'package:elagk_delivery/home/presentation/screens/home_screen.dart';
+import 'package:elagk_delivery/notification/data/notification_model.dart';
 import 'package:elagk_delivery/notification/screens/norification_screen.dart';
 import 'package:elagk_delivery/onboarding/screens/onboarding_screen.dart';
 import 'package:elagk_delivery/opening/presentation/screens/offline_widget.dart';
@@ -86,11 +87,15 @@ class RouteGenerator {
           // final pharmacyLocation = routeSettings.arguments as String;
           return OrderInformation(Order: ordersModel,);
         });
+        case Routes.notification:
+        return MaterialPageRoute(builder: (_) {
+
+          return NotificationScreen();
+        });
 
       case Routes.forgetPasswordScreen:
         return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());
-        case Routes.notification:
-        return MaterialPageRoute(builder: (_) => const NotificationScreen());
+
         case Routes.resetPasswordScreen:
       return MaterialPageRoute(builder: (_) => const ResetPasswordScreen());
       case Routes.confirmPasswordScreen:
@@ -107,7 +112,7 @@ class RouteGenerator {
       case Routes.homeDrawer:
         return MaterialPageRoute(builder: (_) => const HomeDrawer());
       case Routes.homeScreen:
-        return MaterialPageRoute(builder: (_) => const HomeScreen());
+        return MaterialPageRoute(builder: (_) =>  HomeScreen());
 
 
 

@@ -10,7 +10,7 @@ import '../../../data/models/orders_model.dart';
   Widget OrderItem({required context,required OrdersModel ordersModel}) =>
       InkWell(
         onTap: (){
-          OrderCubit.get(context).getPharmacyById(pharmacyId: ordersModel.pharmacyId!.toInt());
+
           HomeScreenCubit.get(context).folowOrders(orderId: ordersModel.orderId!);
 
           navigateTo(

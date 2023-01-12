@@ -9,6 +9,7 @@ import 'package:elagk_delivery/drawer/presentation/controller/contact_us_control
 import 'package:elagk_delivery/drawer/presentation/controller/profile_controller/profile_cubit.dart';
 import 'package:elagk_delivery/home/presentation/controllers/home_screen_controller/home_screen_cubit.dart';
 import 'package:elagk_delivery/home/presentation/controllers/order_controller/order_cubit.dart';
+import 'package:elagk_delivery/notification/controller/notification_cubit.dart';
 import 'package:elagk_delivery/onboarding/controllers/onboarding_cubit.dart';
 import 'package:elagk_delivery/shared/bloc_observer.dart';
 import 'package:elagk_delivery/shared/local/shared_preference.dart';
@@ -66,7 +67,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (BuildContext context) =>ContactUsCubit()..getContactUs()),
           BlocProvider(create: (BuildContext context) =>AboutUsCubit()..getAboutUs()),
           BlocProvider(create: (BuildContext context) =>OrderCubit()),
-
+          BlocProvider(create: (BuildContext context) =>NotificationCubit()..getNotifications()),
           BlocProvider(create: (BuildContext context) =>HomeScreenCubit()..getUserProfileData()..getOrders()),
 
 

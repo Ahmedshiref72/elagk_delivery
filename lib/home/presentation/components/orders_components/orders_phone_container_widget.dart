@@ -3,8 +3,8 @@ import 'package:elagk_delivery/shared/utils/app__fonts.dart';
 import 'package:elagk_delivery/shared/utils/app_values.dart';
 import 'package:flutter/material.dart';
 
-class ContactUsContainer extends StatelessWidget {
-  const ContactUsContainer({
+class OrdersPhoneContainer extends StatelessWidget {
+  const OrdersPhoneContainer({
     Key? key,
     required this.title,
     required this.imageSrc,
@@ -27,6 +27,7 @@ class ContactUsContainer extends StatelessWidget {
         borderRadius: BorderRadius.circular(AppSize.s10),
       ),
       child: Row(children: [
+
         Image.asset(
           imageSrc,
           width: AppSize.s26,

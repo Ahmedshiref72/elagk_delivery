@@ -15,6 +15,7 @@ class OrdersModel {
   int? cartId;
   List<CartViews>? cartViews;
   Delivery? delivery;
+  Pharmacy? pharmacy;
 
   OrdersModel(
       {this.orderId,
@@ -32,7 +33,8 @@ class OrdersModel {
         this.pharmacyId,
         this.cartId,
         this.cartViews,
-        this.delivery});
+        this.delivery,
+        this.pharmacy});
 
   OrdersModel.fromJson(Map<String, dynamic> json) {
     orderId = json['orderId'];
@@ -58,6 +60,9 @@ class OrdersModel {
     delivery = json['delivery'] != null
         ? new Delivery.fromJson(json['delivery'])
         : null;
+    pharmacy = json['pharmacy'] != null
+        ? new Pharmacy.fromJson(json['pharmacy'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -81,6 +86,9 @@ class OrdersModel {
     }
     if (this.delivery != null) {
       data['delivery'] = this.delivery!.toJson();
+    }
+    if (this.pharmacy != null) {
+      data['pharmacy'] = this.pharmacy!.toJson();
     }
     return data;
   }
@@ -131,7 +139,7 @@ class Delivery {
   String? id;
   String? firstName;
   String? lastName;
-  List<String>? phones;
+  List? phones;
 
   Delivery({this.id, this.firstName, this.lastName, this.phones});
 
@@ -139,7 +147,7 @@ class Delivery {
     id = json['id'];
     firstName = json['firstName'];
     lastName = json['lastName'];
-    phones = json['phones'].cast<String>();
+    phones = json['phones'];
   }
 
   Map<String, dynamic> toJson() {
@@ -147,6 +155,59 @@ class Delivery {
     data['id'] = this.id;
     data['firstName'] = this.firstName;
     data['lastName'] = this.lastName;
+    data['phones'] = this.phones;
+    return data;
+  }
+}
+
+class Pharmacy {
+  String? userId;
+  int? pharmacyId;
+  String? pharmacyName;
+  String? pharmacyEmail;
+  String? imageUrl;
+  double? longitude;
+  double? latitude;
+  int? territoryId;
+  String? image;
+  List? phones;
+
+  Pharmacy(
+      {this.userId,
+        this.pharmacyId,
+        this.pharmacyName,
+        this.pharmacyEmail,
+        this.imageUrl,
+        this.longitude,
+        this.latitude,
+        this.territoryId,
+        this.image,
+        this.phones});
+
+  Pharmacy.fromJson(Map<String, dynamic> json) {
+    userId = json['userId'];
+    pharmacyId = json['pharmacyId'];
+    pharmacyName = json['pharmacyName'];
+    pharmacyEmail = json['pharmacyEmail'];
+    imageUrl = json['imageUrl'];
+    longitude = json['longitude'];
+    latitude = json['latitude'];
+    territoryId = json['territoryId'];
+    image = json['image'];
+    phones = json['phones'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['userId'] = this.userId;
+    data['pharmacyId'] = this.pharmacyId;
+    data['pharmacyName'] = this.pharmacyName;
+    data['pharmacyEmail'] = this.pharmacyEmail;
+    data['imageUrl'] = this.imageUrl;
+    data['longitude'] = this.longitude;
+    data['latitude'] = this.latitude;
+    data['territoryId'] = this.territoryId;
+    data['image'] = this.image;
     data['phones'] = this.phones;
     return data;
   }
