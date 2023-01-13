@@ -37,7 +37,7 @@ class EditProfileContent extends StatelessWidget {
     }, builder: (context, state) {
       if (state is! ProfileUpdateUserDataSuccessState) {
         _phoneController.text =
-            ProfileCubit.get(context).userModel!.userPhones![0];
+            ProfileCubit.get(context).userModel!.userPhones!.last;
         _userNameController.text =
             ProfileCubit.get(context).userModel!.userName!;
         _firstNameController.text =

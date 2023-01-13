@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-
+import 'package:intl/intl.dart';
 import '../../shared/global/app_colors.dart';
 import '../../shared/utils/app_strings.dart';
 import '../../shared/utils/app_values.dart';
@@ -19,51 +19,54 @@ class NotificationItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Directionality(
-      textDirection: TextDirection.rtl,
-      child: InkWell(
-        onTap: onTap,
-        child: Column(
-          children: [
+    return InkWell(
+      onTap: onTap,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children:
 
-            Padding(
-                padding: const EdgeInsets.all(AppPadding.p5),
-                child: Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(AppSize.s10),
-                  ),
-                  child: Padding(
-                      padding: const EdgeInsets.all(AppPadding.p10),
-                      child: Row(
-                        children: [
-                          Container(
-                              width: AppSize.s35,
-                              height: AppSize.s35,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(AppSize.s5),
-                                color: AppColors.yellow,
-                              ),
-                              child: const Icon(
-                                Icons.notifications_none,
-                                color: Colors.white,
-                              )),
-                          SizedBox(width: mediaQueryWidth(context) / AppSize.s50),
-                          Text(
-                            "${AppStrings.orderArrived}$orderNumber",
-                            style: Theme.of(context).textTheme.displaySmall,
-                          ),
-                          const Spacer(),
-                          Text(
-                            orderTime,
-                            style: Theme.of(context).textTheme.displaySmall,
-                          ),
-                        ],
-                      )),
-                )),
-          ],
-        ),
+        [
+
+          Padding(
+              padding: const EdgeInsets.all(AppPadding.p5),
+              child: Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(AppSize.s10),
+                ),
+                child: Padding(
+                    padding: const EdgeInsets.all(AppPadding.p10),
+                    child: Row(
+                      children: [
+                        Text(
+
+                          DateFormat("HH:mm").format(
+                            DateTime.parse(orderTime),),
+                          style: Theme.of(context).textTheme.displaySmall,
+                        ),
+                        const Spacer(),
+                        Text(
+                          "${AppStrings.orderArrived}$orderNumber",
+                          style: Theme.of(context).textTheme.displaySmall,
+                        ),
+                        SizedBox(width: mediaQueryWidth(context) / AppSize.s50),
+                        Container(
+                            width: AppSize.s35,
+                            height: AppSize.s35,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(AppSize.s5),
+                              color: AppColors.yellow,
+                            ),
+                            child: const Icon(
+                              Icons.notifications_none,
+                              color: Colors.white,
+                            )),
+
+                      ],
+                    )),
+              )),
+        ],
       ),
     );
   }

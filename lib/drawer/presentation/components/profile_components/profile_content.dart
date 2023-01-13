@@ -31,8 +31,10 @@ class ProfileContent extends StatelessWidget {
         },
         builder: (context,state)
     {
+      print(ProfileCubit.get(context).userModel!.userPhones!.length);
+
       _phoneController.text =
-      ProfileCubit.get(context).userModel!.userPhones![0];
+      ProfileCubit.get(context).userModel!.userPhones!.last;
       _userNameController.text =
       ProfileCubit.get(context).userModel!.userName!;
       _emailController.text =

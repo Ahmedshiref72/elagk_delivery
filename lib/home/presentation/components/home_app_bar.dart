@@ -50,27 +50,6 @@ PreferredSizeWidget homePageAppBar(
                    ),
                    child: Center(child: actionWidget),
                  ),
-                 Positioned(
-                   bottom:AppSize.s30,
-                   left: AppSize.s8,
-                   child: Container(
-                     decoration: BoxDecoration(
-                       borderRadius: BorderRadius.circular(25),
-                       color: Colors.red,
-                     ),
-                     width: AppSize.s16,
-                     height: AppSize.s16,
-                     child: Center(
-                       child: Text('${NotificationCubit
-                           .get(context)
-                           .notifications
-                           .length}', style: TextStyle(
-                         fontSize: 9,
-
-                       ),),
-                     ),
-                   ),
-                 ),
                ],
             ),
           ),

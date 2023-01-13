@@ -1,7 +1,14 @@
+
+
+import 'dart:async';
+
 import 'package:dio/dio.dart';
 import 'package:elagk_delivery/drawer/data/models/profile/user_profile_model.dart';
 import 'package:elagk_delivery/home/presentation/controllers/home_screen_controller/home_screen_state.dart';
 import 'package:elagk_delivery/home/presentation/controllers/order_controller/order_cubit.dart';
+import 'package:elagk_delivery/main.dart';
+import 'package:elagk_delivery/notification/data/notification_model.dart';
+import 'package:elagk_delivery/shared/config/noti.dart';
 import 'package:elagk_delivery/shared/local/shared_preference.dart';
 import 'package:elagk_delivery/shared/network/api_constants.dart';
 import 'package:elagk_delivery/shared/network/dio_helper.dart';
@@ -129,6 +136,62 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
     }
   }
 
+  //get notification
+  List<NotificationModel> notifications = [];
+  NotificationModel? lastNotification;
+
+  Timer? timer;
+
+  Future<void> getNotifications() async {
+    notifications = [];
+
+    emit(GetNotificationLoadingState());
+
+    try {
+      Response response = await Dio().get(
+          ApiConstants.getNotifications(
+              CacheHelper.getData(key: AppConstants.userId)));
+      notifications = (response.data as List)
+          .map((x) => NotificationModel.fromJson(x))
+          .toList();
+      notifications=notifications.reversed.toList();
+      print(notifications.length);
+      print(CacheHelper.getData(key: AppConstants.userId));
+      if(AppConstants.notificationLength<notifications.length) {
+        lastNotification=notifications.first;
+        getNotify();
+      }
+      AppConstants.notificationLength=notifications.length;
+
+      emit(GetNotificationSuccessState(notifications));
+    } catch (error, stacktrace) {
+      emit(GetNotificationErrorState(error.toString()));
+
+      throw Exception("Exception occured: $error stackTrace: $stacktrace");
+    }
+
+  }
+
+
+
+
+  void getNotify()
+  {
+
+    Noti.showBigTextNotification(
+        title: "${lastNotification!.notifiactionTitle}",
+        body: "${lastNotification!.notifiactionDescription}",
+        fln: flutterLocalNotificationsPlugin);
+
+
+
+  }
+
+  void checkNotifications()
+  {
+    timer = Timer.periodic(Duration(seconds: 35), (Timer t)=>getNotifications());
+
+  }
 
 
 }

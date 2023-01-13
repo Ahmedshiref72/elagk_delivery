@@ -1,5 +1,6 @@
 
 import 'package:elagk_delivery/drawer/data/models/profile/user_profile_model.dart';
+import 'package:elagk_delivery/notification/data/notification_model.dart';
 
 import '../../../data/models/orders_model.dart';
 
@@ -63,3 +64,17 @@ class GetOrdersErrorState extends HomeScreenState
 
 class FilterOrdersLoadingState extends HomeScreenState {}
 class FilterOrdersSuccessState extends HomeScreenState {}
+
+
+class GetNotificationLoadingState  extends HomeScreenState {}
+class GetNotificationSuccessState  extends HomeScreenState {
+  final List<NotificationModel> model;
+
+  GetNotificationSuccessState(this.model);
+}
+class GetNotificationErrorState  extends HomeScreenState
+{
+  final String error;
+
+  GetNotificationErrorState(this.error);
+}

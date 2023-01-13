@@ -9,7 +9,6 @@ import 'package:elagk_delivery/drawer/presentation/screens/edit_profile_screen.d
 import 'package:elagk_delivery/home/data/models/orders_model.dart';
 import 'package:elagk_delivery/home/presentation/screens/home_screen.dart';
 import 'package:elagk_delivery/notification/screens/norification_screen.dart';
-import 'package:elagk_delivery/onboarding/screens/onboarding_screen.dart';
 import 'package:elagk_delivery/opening/presentation/screens/offline_widget.dart';
 import 'package:elagk_delivery/opening/presentation/screens/splash_screen.dart';
 

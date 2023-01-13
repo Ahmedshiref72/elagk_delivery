@@ -14,6 +14,13 @@ class PostOrderErrorState  extends OrderState
   final String error;
 
   PostOrderErrorState(this.error);
+}class OrderDeliverDoneLoadingState  extends OrderState {}
+class OrderDeliverDoneSuccessState  extends OrderState {}
+class OrderDeliverDoneErrorState  extends OrderState
+{
+  final String error;
+
+  OrderDeliverDoneErrorState(this.error);
 }
 
 

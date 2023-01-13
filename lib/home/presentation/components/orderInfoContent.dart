@@ -186,7 +186,17 @@ class OrderInformationContent extends StatelessWidget {
                       ),
                     ],
                   )
-                      : SizedBox(),
+                      : Center(child:  ScoundButton(
+                    onPressed: () {
+                      OrderCubit.get(context).folowOrders(
+                          orderId: Order!.orderId!.toInt());
+                      OrderCubit.get(context).postOrder(
+                          orderId: Order!.orderId!.toInt());
+                    },
+                    mainColor: Colors.green,
+                    scoundColor: Colors.green.shade50,
+                    text: 'تم تاكيد التسليم',
+                  ),),
                 )
 
               ],

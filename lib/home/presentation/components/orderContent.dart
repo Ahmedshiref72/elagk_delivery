@@ -1,6 +1,8 @@
 import 'package:elagk_delivery/home/presentation/controllers/home_screen_controller/home_screen_cubit.dart';
+import 'package:elagk_delivery/shared/utils/app_assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
 import '../../../shared/components/na_data_widget.dart';
 import '../../../shared/global/app_colors.dart';
 import '../../../shared/utils/app_strings.dart';
@@ -43,7 +45,13 @@ class OrdersContents extends StatelessWidget {
           );
         }else if(HomeScreenCubit.get(context).Orders.isEmpty)
         {
-          return Center(child: NoDataWidget(AppStrings.noOrders));
+          return Column(
+            children: [
+              Lottie.asset(JsonAssets.ordersDone),
+              SizedBox(height: 50,),
+              Center(child: NoDataWidget(AppStrings.noOrders)),
+            ],
+          );
         }
         else
           return Center(

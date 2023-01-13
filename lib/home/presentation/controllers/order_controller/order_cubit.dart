@@ -28,6 +28,20 @@ class OrderCubit extends Cubit<OrderState> {
       print(onError.toString());
     });
   }
+  Future<void> postOrderDeliverDone({
+    required orderId}) async {
+    emit(OrderDeliverDoneLoadingState());
+    DioHelper.postData(
+      url: ApiConstants.postOrderDeliverDone(
+          CacheHelper.getData(key: AppConstants.userId), orderId),
+
+    ).then((value) {
+      emit(OrderDeliverDoneSuccessState());
+    }).catchError((onError) {
+      emit(OrderDeliverDoneErrorState(onError.toString()));
+      print(onError.toString());
+    });
+  }
 
 
   //follow

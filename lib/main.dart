@@ -10,26 +10,75 @@ import 'package:elagk_delivery/drawer/presentation/controller/profile_controller
 import 'package:elagk_delivery/home/presentation/controllers/home_screen_controller/home_screen_cubit.dart';
 import 'package:elagk_delivery/home/presentation/controllers/order_controller/order_cubit.dart';
 import 'package:elagk_delivery/notification/controller/notification_cubit.dart';
-import 'package:elagk_delivery/onboarding/controllers/onboarding_cubit.dart';
 import 'package:elagk_delivery/shared/bloc_observer.dart';
+import 'package:elagk_delivery/shared/config/noti.dart';
 import 'package:elagk_delivery/shared/local/shared_preference.dart';
 import 'package:elagk_delivery/shared/network/dio_helper.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:workmanager/workmanager.dart';
 import 'shared/global/app_theme.dart';
 import 'shared/utils/app_routes.dart';
 import 'shared/utils/app_strings.dart';
 
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+FlutterLocalNotificationsPlugin();
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  void callbackDispatcher() {
+    Workmanager().executeTask((task, inputData) {
+
+      // initialise the plugin of flutter local notifications.
+      FlutterLocalNotificationsPlugin flip = new FlutterLocalNotificationsPlugin();
+
+      // app_icon needs to be a added as a drawable
+      // resource to the Android head project.
+      var android = new AndroidInitializationSettings('@mipmap/ic_launcher');
+      var IOS = new DarwinInitializationSettings();
+
+      // initialise settings for both Android and iOS device.
+      var settings = new InitializationSettings(android: android, iOS: IOS);
+      flip.initialize(settings);
+
+      return Future.value(true);
+    });
+  }
+  Workmanager().initialize(
+
+    // The top level function, aka callbackDispatcher
+      callbackDispatcher,
+
+      // If enabled it will post a notification whenever
+      // the task is running. Handy for debugging tasks
+      isInDebugMode: true
+  );
+
+  // Periodic task registration
+  Workmanager().registerPeriodicTask(
+    "2",
+
+    //This is the value that will be
+    // returned in the callbackDispatcher
+    "simplePeriodicTask",
+
+    // When no frequency is provided
+    // the default 15 minutes is set.
+    // Minimum frequency is 15 min.
+    // Android will automatically change
+    // your frequency to 15 min
+    // if you have configured a lower frequency.
+    frequency: Duration(minutes: 15),
+  );
   // await Firebase.initializeApp();
   // await initFCM(); // TODO: enable it after adding app notifications.
   Bloc.observer = MyBlocObserver();
   DioHelper.init();
   CacheHelper.init();
 
+  Noti.initialize(flutterLocalNotificationsPlugin);
   // initializeFancyCart(
   //   child: MyApp(),
   // );
@@ -57,7 +106,6 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
         providers:
         [
-          BlocProvider(create: (BuildContext context) =>OnboardingCubit()),
           BlocProvider(create: (BuildContext context) =>LoginCubit()),
           BlocProvider(create: (BuildContext context) =>ForgetPasswordCubit()),
           BlocProvider(create: (BuildContext context) =>ResetPasswordCubit()),
@@ -68,10 +116,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (BuildContext context) =>AboutUsCubit()..getAboutUs()),
           BlocProvider(create: (BuildContext context) =>OrderCubit()),
           BlocProvider(create: (BuildContext context) =>NotificationCubit()..getNotifications()),
-          BlocProvider(create: (BuildContext context) =>HomeScreenCubit()..getUserProfileData()..getOrders()),
-
-
-
+          BlocProvider(create: (BuildContext context) =>HomeScreenCubit()..getNotifications()..checkNotifications()..getUserProfileData()..getOrders()),
         ],
         child: MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -83,7 +128,6 @@ class MyApp extends StatelessWidget {
       title: AppStrings.appTitle,
     )
     );
-
   }
 }
 
