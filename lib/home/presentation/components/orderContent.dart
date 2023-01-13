@@ -1,4 +1,3 @@
-import 'package:elagk_delivery/home/presentation/components/search_widget.dart';
 import 'package:elagk_delivery/home/presentation/controllers/home_screen_controller/home_screen_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

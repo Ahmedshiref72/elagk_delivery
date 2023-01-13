@@ -109,7 +109,6 @@ flutter:
     - assets/video/
     - assets/json/
     - assets/images/
-    - assets/images/splash/
     - assets/images/login/
     - assets/images/reset password/
     - assets/images/profile/
@@ -119,10 +118,6 @@ flutter:
     - assets/images/order/
     - assets/images/contact_us/
     - assets/images/about_us/
-    - assets/images/onboarding/
-    - assets/images/onboarding/1/
-    - assets/images/onboarding/2/
-    - assets/images/onboarding/3/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

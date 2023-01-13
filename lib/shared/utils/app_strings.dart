@@ -3,12 +3,7 @@ class AppStrings {
   static const String appTitle = "3elagk pharmacy - علاجك لصيدليات";
   static const String isNull = "null";
   static const String nA = "N/A";
-  static const String welcome  = " مرحبا بكم في علاجك";
-  static const String pharmacies="الصيدليات";
-  static const String search  = "ابحث .....";
-  static const String noPharmacies= "لا يوجد صيدليات حتى الآن";
   static const String pleaseCheckYourInternet= "من فضلك تحقق من اتصال الانترنت لديك ثم أعد تحميل الصفحه";
-  static const String pleaseGiveGPSPermission= "من فضلك قم باعطاء التطبيق صلاحيه الوصول الى GPS من اعدادات جهازك";
   static const String thenRestartApp= "ثم اعد تشغيل التطبيق";
 
 // forget password
@@ -95,10 +90,6 @@ class AppStrings {
   static const String oldPassword = "كلمة المرور القديمه";
   static const String changePassword = "تغيير كلمه المرور";
 
-  static const String resetPasswordSubtitle =
-      "ادخل كلمة مرور تتكون من 8 أحرف بحد أدني، وتحتوي علي رقم وحرف كبير ورمز واحد عالأقل.";
-  static const String theNewPassword = "كلمة المرور الجديدة";
-  static const String hintPassword = "Aa123456#.*";
 
   // Drawer taps
   static const String homeScreen = "الصفحة الرئيسية";
@@ -107,8 +98,6 @@ class AppStrings {
   static const String contactUs = "تواصل معنا";
   static const String aboutUs = "عن التطبيق";
   static const String orders = "الطلبات";
-  static const String orderDetails = "تفاصيل الطلب";
-  static const String pastOrders = "الطلبات السابقه";
 
 
   // About us
@@ -145,14 +134,10 @@ class AppStrings {
   static const String pharmacyName = "اسم الصيدليه";
   static const String clientName = "اسم العميل";
   static const String clientPhone = "رقم العميل";
-
   static const String ordersInfo = "الطلب رقم";
 
 
   // One order details screen
-  static const String orderNum = "الطلب رقم ";
-  static const String addressIs = "العنوان: ";
-  static const String deliverPrice = "سعر التوصيل";
   static const String deliverTo= "التوصيل الى";
 
   // Appbar

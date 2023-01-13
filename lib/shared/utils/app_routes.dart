@@ -8,42 +8,27 @@ import 'package:elagk_delivery/drawer/presentation/components/profile_components
 import 'package:elagk_delivery/drawer/presentation/screens/edit_profile_screen.dart';
 import 'package:elagk_delivery/home/data/models/orders_model.dart';
 import 'package:elagk_delivery/home/presentation/screens/home_screen.dart';
-import 'package:elagk_delivery/notification/data/notification_model.dart';
 import 'package:elagk_delivery/notification/screens/norification_screen.dart';
 import 'package:elagk_delivery/onboarding/screens/onboarding_screen.dart';
 import 'package:elagk_delivery/opening/presentation/screens/offline_widget.dart';
 import 'package:elagk_delivery/opening/presentation/screens/splash_screen.dart';
 
 import 'package:elagk_delivery/shared/utils/app_strings.dart';
-import 'package:elagk_delivery/shared/utils/argument_models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
-
-import '../../auth/presentation/screens/vrification/activator_screen.dart';
-import '../../home/data/models/orders_model.dart';
-import '../../home/data/models/orders_model.dart';
 import '../../home/presentation/screens/order_info.dart';
 
 class Routes {
   static const String home = '/';
-  static const String basketScreen = '/BasketScreen';
   static const String loginScreen = '/loginScreen';
-  static const String registerScreen = '/registerScreen';
   static const String forgetPasswordScreen = '/forgetPasswordScreen';
   static const String otpVerifyScreen = '/otpVerifyScreen';
   static const String resetPasswordScreen = '/resetPasswordScreen';
   static const String homeScreen = '/homeScreen';
   static const String oneOrderDetailsScreen = '/oneOrderDetailsScreen';
   static const String homeDrawer = '/HomeDrawer';
-  static const String pharmacy = '/PharmacyScreen';
   static const String editProfileScreen = '/EditProfileScreen';
-  static const String offersScreen = '/OffersScreen';
   static const String otpPasswordScreen = '/OtpPasswordScreen';
-  static const String onBoarding = '/OnBoardingScreen';
-  static const String categories = '/CategoriesScreen';
-  static const String allOrdersScreen = '/allOrdersScreen';
-  static const String addNewMedicinesScreen = '/addNewMedicinesScreen';
-  static const String orderByPrescription = '/OrderByPrescriptionScreen';
   static const String confirmPasswordScreen = '/confirmPasswordScreen';
   static const String activator = '/ActivatorScreen';
   static const String resetPasswordScreenByOldPassword = '/ResetPasswordScreenByOldPassword';
@@ -74,8 +59,6 @@ class RouteGenerator {
             child: const Center(child: CircularProgressIndicator()),
           ),
         );
-      case Routes.onBoarding:
-        return MaterialPageRoute(builder: (_) => OnBoardingScreen());
     case Routes.editProfileScreen:
       return MaterialPageRoute(builder: (_) => const EditProfileScreen());
       case Routes.loginScreen:
@@ -95,20 +78,15 @@ class RouteGenerator {
 
       case Routes.forgetPasswordScreen:
         return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());
-
         case Routes.resetPasswordScreen:
       return MaterialPageRoute(builder: (_) => const ResetPasswordScreen());
       case Routes.confirmPasswordScreen:
         return MaterialPageRoute(builder: (_) => ConfirmPasswordScreen());
         case Routes.resetPasswordScreenByOldPassword:
       return MaterialPageRoute(builder: (_) => ResetPasswordScreenByOldPassword());
-      case Routes.activator:
-        return MaterialPageRoute(builder: (_) => ActivatorScreen());
 
       case Routes.otpPasswordScreen:
         return MaterialPageRoute(builder: (_) => OtpPasswordScreen());
-      case Routes.orderByPrescription:
-
       case Routes.homeDrawer:
         return MaterialPageRoute(builder: (_) => const HomeDrawer());
       case Routes.homeScreen:

@@ -6,7 +6,6 @@ import 'package:elagk_delivery/auth/presentation/components/auth_title_subtitle_
 import 'package:elagk_delivery/auth/presentation/components/logo_widget.dart';
 import 'package:elagk_delivery/auth/presentation/components/main_button.dart';
 import 'package:elagk_delivery/auth/presentation/components/screen_background.dart';
-import 'package:elagk_delivery/drawer/presentation/components/fixed_appbar_widget.dart';
 import 'package:elagk_delivery/drawer/presentation/controller/profile_controller/profile_cubit.dart';
 import 'package:elagk_delivery/shared/components/second_appBar.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +42,7 @@ class ResetPasswordScreenByOldPassword extends StatelessWidget {
             onTap: () {
               navigateTo(
                 context: context,
-                screenRoute: Routes.basketScreen,
+                screenRoute: Routes.notification,
               );
             },
             actionWidget: Icon(Icons.add),

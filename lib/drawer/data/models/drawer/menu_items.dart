@@ -7,7 +7,6 @@ import 'package:elagk_delivery/shared/utils/app_assets.dart';
 import 'package:elagk_delivery/shared/utils/app_strings.dart';
 import 'package:elagk_delivery/shared/utils/app_values.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class MenuItems {
