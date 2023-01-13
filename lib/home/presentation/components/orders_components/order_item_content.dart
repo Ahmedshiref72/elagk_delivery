@@ -11,7 +11,7 @@ import '../../../data/models/orders_model.dart';
       InkWell(
         onTap: (){
 
-          HomeScreenCubit.get(context).folowOrders(orderId: ordersModel.orderId!);
+          OrderCubit.get(context).folowOrders(orderId: ordersModel.orderId!);
 
           navigateTo(
               context: context,

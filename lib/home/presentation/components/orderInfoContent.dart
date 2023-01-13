@@ -1,6 +1,7 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:elagk_delivery/drawer/presentation/controller/about_us_controller/about_us_state.dart';
 import 'package:elagk_delivery/home/data/models/accepted_model.dart';
+import 'package:elagk_delivery/home/presentation/components/salary_widget.dart';
 import 'package:elagk_delivery/home/presentation/components/scound_button.dart';
 import 'package:elagk_delivery/home/presentation/controllers/home_screen_controller/home_screen_state.dart';
 import 'package:elagk_delivery/home/presentation/controllers/order_controller/order_cubit.dart';
@@ -20,6 +21,8 @@ import '../../../shared/utils/app_strings.dart';
 import '../../../shared/utils/app_values.dart';
 import '../../data/models/orders_model.dart';
 import '../controllers/home_screen_controller/home_screen_cubit.dart';
+import 'info_content_widget2.dart';
+import 'informations_content_widget.dart';
 import 'orders_components/orderBasketContent.dart';
 import 'orders_components/orders_phone_container_widget.dart';
 
@@ -30,157 +33,97 @@ class OrderInformationContent extends StatelessWidget {
   }) : super(key: key);
   final OrdersModel? Order;
 
-
-  // final CartViews? cartViews;
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<OrderCubit,OrderState>(
       listener: (context,state){
         if (state is PostOrderSuccessState) {
-          showToast(
-              text: 'Order Accepted Successfully',
-              state: ToastStates.SUCCESS);
+          showDialog(
+              context: context,
+              builder: (_) {
+                return alertDialog(
+                  imageSrc: JsonAssets.orderAccepted,
+                  text:
+                  'تم قبول الطلب بنجاح',
+                );
+              });
 
         } else if (state is PostOrderErrorState) {
           showToast(text: '${state.error}', state: ToastStates.ERROR);
         }
       },
       builder: (context,state){
-         return Directionality(
+        if(OrderCubit.get(context).acceptedModel!=null) {
+          return Directionality(
           textDirection: TextDirection.rtl,
           child: Padding(
             padding: const EdgeInsets.all(AppPadding.p10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  children: [
-                    Icon(
-                      Icons.location_on_outlined,
-                      color: Colors.green,
-                      size: 30,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      AppStrings.deliverTo,
-                      style: Theme.of(context).textTheme.displayLarge,
-                    ),
-                    Spacer(),
-                    InkWell(
-                      onTap: () {
-                        ContactUsCubit.get(context).openMap(
-                            Order!.destinationLatitude!.toDouble(),
-                            Order!.destinationLongitude!.toDouble());
-                      },
-                      child: Container(
-                        width: AppSize.s40,
-                        height: AppSize.s40,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          border: Border.all(
-                            color: AppColors.offWhite,
-                            width: AppSize.s1,
-                          ),
-                          borderRadius: BorderRadius.circular(AppSize.s15),
-                        ),
-                        child: Icon(Icons.my_location),
-                      ),
-                    ),
-                  ],
+                //deliver to
+                InformationContentSection2(
+                  ontap: (){
+                    ContactUsCubit.get(context).openMap(
+                        Order!.destinationLatitude!.toDouble(),
+                        Order!.destinationLongitude!.toDouble());
+                  },
+                  text: AppStrings.deliverTo,
+
+                  text1: Order!.address.toString(),
+                  child: const Icon(
+                    Icons.location_on_outlined,
+                    color: Colors.green,
+                    size: 30,
+                  ),
                 ),
-                Text(
-                  Order!.address.toString(),
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-                ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 //pharmacy name
-                Row(
-                  children: [
-                    Image.asset(
-                      'assets/images/drawer_icons/phamacy.png',
-                      width: 30,
-                      height: 30,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-
-                    Text(
-
-                      AppStrings.pharmacyName,
-                      style: Theme.of(context).textTheme.displayLarge,
-                    ),
-                  ],
-                ),
-
-                Text(
-                  Order!.pharmacy!.pharmacyName.toString(),
-                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  children: [
-                    Image.asset(
-                      'assets/images/login/boss(1).png',
-                      width: 30,
-                      height: 30,
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      AppStrings.clientName,
-                      style: Theme.of(context).textTheme.displayLarge,
-                    ),
-                  ],
-                ),
-                Text(
-                  Order!.delivery!.firstName.toString()+Order!.delivery!.lastName.toString(),
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                InkWell(
-                  onTap: () {
-                    launch("tel:${Order!.delivery!.phones}");
+                InformationContentSection2(
+                  ontap: (){
+                    ContactUsCubit.get(context).openMap(
+                        Order!.pharmacy!.latitude!.toDouble(),
+                        Order!.pharmacy!.longitude!.toDouble());
                   },
-                  child: Row(
-                    children: [
-                      Image.asset(
-                        ImageAssets.call,
-                        width: 30,
-                        height: 30,
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        AppStrings.phoneNumber,
-                        style: Theme.of(context).textTheme.displayLarge,
-                      ),
-                    ],
-                  ),
-                ),
-                InkWell(
-                  onTap: () {
-                    launch("tel:${Order!.delivery!.phones}");
-                  },
-                  child: Text(
-                    Order!.delivery!.phones!.first.toString(),
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                  text: AppStrings.pharmacyName,
+
+                  text1:Order!.pharmacy!.pharmacyName.toString(),
+                  child:   Image.asset(
+                    'assets/images/drawer_icons/phamacy.png',
+                    width: 30,
+                    height: 30,
                   ),
                 ),
                 const SizedBox(
                   height: 20,
                 ),
-
+                //client name
+                InformationContentSection(
+                  text: AppStrings.clientName,
+                  image: 'assets/images/login/boss(1).png',
+                  text1: Order!.delivery!.firstName.toString() +
+                      Order!.delivery!.lastName.toString(),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                //phone number
+                InkWell(
+                  onTap: (){
+                    launch("tel:${Order!.delivery!.phones}");
+                  },
+                  child: InformationContentSection(
+                    text: AppStrings.phoneNumber,
+                    image:  ImageAssets.call,
+                    text1:  Order!.delivery!.phones!.first.toString(),
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                //carts
                 ListView.separated(
                   physics: NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
@@ -195,72 +138,30 @@ class OrderInformationContent extends StatelessWidget {
                   separatorBuilder: (context, index) => SizedBox(),
                   itemCount: Order!.cartViews!.length,
                 ),
-
                 const SizedBox(
                   height: 20,
                 ),
-                Row(
-                  children: [
-                    const Text(
-                      "السعر",
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                    ),
-                    Spacer(),
-                    Text(
-                      Order!.totalPrice!.toString(),
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                    ),
-                  ],
-                ),
+                SalarySection(text:Order!.totalPrice!.toString(), text1:  "السعر",color: Colors.black,),
                 SizedBox(height: mediaQueryHeight(context) / AppSize.s50),
-                Row(
-                  children: [
-                    const Text(
-                      "الديلفري",
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                    ),
-                    Spacer(),
-                    Text(
-                      Order!.fees.toString(),
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                    ),
-                  ],
-                ),
+                SalarySection(text: Order!.fees.toString(), text1: "الديلفري",color: Colors.black,),
+
                 SizedBox(height: mediaQueryHeight(context) / AppSize.s50),
                 const DottedLine(
                     dashColor: Colors.grey, dashLength: 11, dashGapLength: 10),
                 SizedBox(height: mediaQueryHeight(context) / AppSize.s50),
-                Row(
-                  children: [
-                    const Text(
-                      "اجمالي السعر",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                          color: Colors.green),
-                    ),
-                    Spacer(),
-                    Text(
-                      Order!.totalPrice!.toString(),
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                          color: Colors.green),
-                    ),
-                  ],
-                ),
+                SalarySection(text:Order!.totalPrice!.toString(), text1: "اجمالي السعر",color: Colors.green,),
 
                 SizedBox(height: mediaQueryHeight(context) / AppSize.s40),
                 Padding(
                   padding: const EdgeInsets.only(right: AppSize.s40),
-                  child: (!HomeScreenCubit.get(context)
+                  child: (!OrderCubit.get(context)
                       .acceptedModel!
                       .isAcceptedByDelivery!)
                       ? Row(
                     children: [
                       ScoundButton(
                         onPressed: () {
-                          HomeScreenCubit.get(context).folowOrders(
+                          OrderCubit.get(context).folowOrders(
                               orderId: Order!.orderId!.toInt());
                           OrderCubit.get(context).postOrder(
                               orderId: Order!.orderId!.toInt());
@@ -273,7 +174,7 @@ class OrderInformationContent extends StatelessWidget {
                           width: mediaQueryWidth(context) / AppSize.s5),
                       ScoundButton(
                         onPressed: () {
-                          HomeScreenCubit.get(context).folowOrders(
+                          OrderCubit.get(context).folowOrders(
                               orderId: Order!.orderId!.toInt());
                           navigateFinalTo(
                               context: context,
@@ -292,6 +193,10 @@ class OrderInformationContent extends StatelessWidget {
             ),
           ),
         );
+        } else {
+          return const Center(child:
+           CircularProgressIndicator(color: AppColors.primary,),);
+        }
 
       },
 

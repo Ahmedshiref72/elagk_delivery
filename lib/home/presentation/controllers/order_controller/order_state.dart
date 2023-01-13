@@ -25,3 +25,13 @@ class getPharmacyByIdErrorState  extends OrderState
 
   getPharmacyByIdErrorState(this.error);
 }
+
+//follow
+class FollowOrderLoadingState  extends OrderState {}
+class FollowOrderSuccessState  extends OrderState {}
+class FollowOrderErrorState  extends OrderState
+{
+  final String error;
+
+  FollowOrderErrorState(this.error);
+}

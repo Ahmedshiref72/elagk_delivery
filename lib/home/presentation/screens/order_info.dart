@@ -53,13 +53,7 @@ class OrderInformation extends StatelessWidget {
                 ),
               ),
             ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
 
-               },
-            backgroundColor: AppColors.primary,
-            child: Icon(Icons.refresh),
-          ),
         ),
         // HomeScreen
       ),

@@ -129,44 +129,6 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
     }
   }
 
-  //follow
-
-  StepperFollowModel? acceptedModel;
-
-  Future<void> folowOrders({required int orderId}) async {
-    emit(FollowOrderLoadingState());
-    print('jjjjjjjjjjjjjj');
-    print(orderId.toString());
-    DioHelper.getData(
-        url: ApiConstants.followOrder(orderId))
-        .then((value) {
-      acceptedModel = StepperFollowModel.fromJson(value.data);
-      print('jjjjjjjjjjjjjj');
-      print(acceptedModel!.isAcceptedByDelivery!);
-      emit(FollowOrderSuccessState());
-    }).catchError((oError) {
-      print(oError.toString());
-      emit(FollowOrderErrorState(oError.toString()));
-    });
-  }
-
-  //filter
-  List<OrdersModel> filteredOrders=[];
-  void filterOrders()
-  {
-    filteredOrders=[];
-    emit(FilterOrdersLoadingState());
-    Orders.forEach((element)
-    {
-      folowOrders(orderId: ordersModel!.orderId!.toInt());
-      if(!acceptedModel!.isAcceptedByPharmacy!)
-      {
-        filteredOrders.add(element);
-      }
-    });
-    emit(FilterOrdersSuccessState());
-
-  }
 
 
 }

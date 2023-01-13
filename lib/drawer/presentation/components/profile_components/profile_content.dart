@@ -147,7 +147,7 @@ class ProfileContent extends StatelessWidget {
                   obscure: false,
                   validator: (value) {
                     if (value!.length < 11) {
-                      return AppStrings.enterValidnum;
+                      return AppStrings.enterValidnum1;
                     } else {
                       return null;
                     }
