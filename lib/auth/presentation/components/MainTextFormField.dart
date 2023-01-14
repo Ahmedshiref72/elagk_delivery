@@ -7,7 +7,7 @@ class MainTextFormField extends StatelessWidget {
     Key? key,
     required this.controller,
     required this.label,
-    required this.obscure,
+
     required this.validator,
     required this.inputType,
     this.hint,
@@ -17,28 +17,30 @@ class MainTextFormField extends StatelessWidget {
     this.icon,
     this.suffixIcon,
     this.textDirection,
+    required this.isObsecured,
   }) : super(key: key);
   final TextEditingController controller;
   final String? Function(String?)? validator;
   final String label;
   final TextInputType inputType;
   String? hint;
-  bool obscure = false;
+
   Color? focusColor;
   Color? hintColor;
   Widget? icon;
   Widget? suffixIcon;
   TextDirection? textDirection;
   int? maxLines;
+  bool isObsecured=false;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+        obscureText:isObsecured,
       onEditingComplete: () => FocusScope.of(context).nextFocus(),
       validator: validator,
       controller: controller,
       keyboardType: inputType,
-      obscureText: obscure,
       maxLines: maxLines ?? AppSize.si1,
       textDirection: textDirection ?? TextDirection.rtl,
       textAlignVertical: TextAlignVertical.center,
@@ -52,7 +54,6 @@ class MainTextFormField extends StatelessWidget {
         filled: true,
         fillColor: focusColor,
         focusColor: focusColor,
-        suffix: suffixIcon,
         hintText: hint ?? '',
         hintStyle: Theme.of(context).textTheme.displayMedium!.copyWith(
               color: hintColor,
@@ -68,7 +69,7 @@ class MainTextFormField extends StatelessWidget {
           left: AppPadding.p20,
           bottom: AppPadding.p10,
         ),
-        suffixIcon: icon,
+        suffixIcon: suffixIcon,
         focusedBorder: _outlineInputBorder(),
         enabledBorder: _outlineInputBorderStyle(),
         errorBorder: _outlineInputBorderErrorStyle(),

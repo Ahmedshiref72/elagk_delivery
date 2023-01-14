@@ -55,18 +55,26 @@ class LoginScreen extends StatelessWidget {
                         hintColor: AppColors.lightGrey,
                         inputType: TextInputType.emailAddress,
                         textDirection: TextDirection.ltr,
-                        obscure: false,
+
+                        isObsecured:false,
                         validator: (value) => validateEmail(value!),
                       ),
                       SizedBox(height: mediaQueryHeight(context) / AppSize.s30),
                       MainTextFormField(
+                        isObsecured:LoginCubit.get(context).isObsecured ,
+                        suffixIcon: IconButton(
+                            color: Colors.white,
+                            icon: LoginCubit.get(context).isObsecured?Icon(Icons.visibility,color: AppColors.primary,):
+                            Icon(Icons.visibility_off,color: AppColors.primary,),
+                            onPressed: (){
+                              LoginCubit.get(context).changeVisibility();
+                            }),
                         controller: _passwordController,
                         label: AppStrings.password,
                         hint: AppStrings.passwordExample,
                         hintColor: AppColors.lightGrey,
                         inputType: TextInputType.visiblePassword,
                         textDirection: TextDirection.ltr,
-                        obscure: true,
                         validator: (value) {
                           if (value!.length < AppSize.s8) {
                             return AppStrings.enterValidPassword;

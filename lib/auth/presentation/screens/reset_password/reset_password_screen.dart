@@ -60,7 +60,7 @@ class ResetPasswordScreen extends StatelessWidget {
                         hintColor: AppColors.lightGrey,
                         inputType: TextInputType.emailAddress,
                         textDirection: TextDirection.ltr,
-                        obscure: false,
+                        isObsecured: false,
                         validator: (value) => validateEmail(value!),
                       ),
                       SizedBox(height: mediaQueryHeight(context) / AppSize.s30),
@@ -71,7 +71,7 @@ class ResetPasswordScreen extends StatelessWidget {
                         hintColor: AppColors.lightGrey,
                         inputType: TextInputType.visiblePassword,
                         textDirection: TextDirection.ltr,
-                        obscure: true,
+                        isObsecured: true,
                         validator: (value) {
                           if (value!.length < AppSize.s8) {
                             return AppStrings.enterValidPassword;

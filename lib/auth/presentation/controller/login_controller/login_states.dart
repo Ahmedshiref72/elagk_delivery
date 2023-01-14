@@ -23,6 +23,7 @@ class LoginErrorState extends LoginStates
 
 class ProfileGetUserDataLoadingState  extends LoginStates {}
 
+
 class ProfileGetUserDataSuccessState  extends LoginStates
 {
   final UserProfileModel userModel;
@@ -37,3 +38,5 @@ class ProfileGetUserDataErrorState  extends LoginStates
   ProfileGetUserDataErrorState(this.error);
 }
 
+class ChangePasswordVisibilityState  extends LoginStates {}
+class ChangeVisibilityState  extends LoginStates {}

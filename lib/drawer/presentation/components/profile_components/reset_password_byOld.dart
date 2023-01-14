@@ -64,13 +64,14 @@ class ResetPasswordScreenByOldPassword extends StatelessWidget {
                         authSubtitle: AppStrings.pleaseEnterOldPass,
                       ),
                       MainTextFormField(
+                        isObsecured: true,
                         controller: _oldPasswordController,
                         label: AppStrings.oldPassword,
                         hint: AppStrings.passwordExample,
                         hintColor: AppColors.lightGrey,
                         inputType: TextInputType.visiblePassword,
                         textDirection: TextDirection.ltr,
-                        obscure: true,
+
                         validator: (value) {
                           if (value!.length < AppSize.s8) {
                             return AppStrings.enterValidPassword;
@@ -86,7 +87,8 @@ class ResetPasswordScreenByOldPassword extends StatelessWidget {
                         hintColor: AppColors.lightGrey,
                         inputType: TextInputType.visiblePassword,
                         textDirection: TextDirection.ltr,
-                        obscure: false,
+
+                        isObsecured: false,
                         validator: (value) {
                           if (value!.length < AppSize.s8) {
                             return AppStrings.enterValidPassword;
