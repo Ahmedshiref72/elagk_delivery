@@ -64,6 +64,36 @@ class OrderCubit extends Cubit<OrderState> {
     });
   }
 
+  Future<void> postNotification(
+      {
+        required String UserID,
+        required String notifiactionTitle,
+        required  String notifiactionDescription
+      })
+  async {
+    emit(PostNotificationLoadingState());
+    print(UserID);
+    Dio().post('http://freeserver23-001-site1.atempurl.com/api/Notifications',
+        data:{
+          // "notifiactionId": 0,
+          "notifiactionTitle":notifiactionTitle ,
+          "notifiactionDescription":notifiactionDescription,
+          "userId": "${UserID}",
+          "action": "string",
+          "table": "string",
+          "data": "string",
+        }
+    ).then((value)
+    {
+      emit(PostNotificationSuccessState());
+
+    }).catchError((onError)
+    {
+      print(onError.toString());
+      emit(PostNotificationErrorState(onError.toString()));
+    });
+
+  }
 
 
 

@@ -6,6 +6,7 @@ import 'package:elagk_delivery/home/presentation/components/scound_button.dart';
 import 'package:elagk_delivery/home/presentation/controllers/home_screen_controller/home_screen_state.dart';
 import 'package:elagk_delivery/home/presentation/controllers/order_controller/order_cubit.dart';
 import 'package:elagk_delivery/home/presentation/controllers/order_controller/order_state.dart';
+import 'package:elagk_delivery/shared/utils/app_constants.dart';
 import 'package:elagk_delivery/shared/utils/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -172,6 +173,15 @@ class OrderInformationContent extends StatelessWidget {
                                 orderId: Order!.orderId!.toInt());
                             OrderCubit.get(context).postOrder(
                                 orderId: Order!.orderId!.toInt());
+                            navigateFinalTo(
+                                context: context,
+                                screenRoute: Routes.homeDrawer);
+                            //post notify to client
+                            OrderCubit.get(context).postNotification(
+                                UserID:
+                                Order!.userId!, notifiactionTitle: "order Progress",
+                                notifiactionDescription:
+                                "your order On the way");
                           },
                           mainColor: Colors.green,
                           scoundColor: Colors.green.shade50,
@@ -186,6 +196,15 @@ class OrderInformationContent extends StatelessWidget {
                             navigateFinalTo(
                                 context: context,
                                 screenRoute: Routes.homeDrawer);
+
+                            //post notify to pharmacy
+                            OrderCubit.get(context).postNotification(
+                                UserID:
+                                Order!.pharmacy!.userId!, notifiactionTitle:
+                            "order Progress",
+                                notifiactionDescription:
+                                "the order ${Order!.orderId!} rejected by delivery "
+                                    "${AppConstants.userModel!.firstName}");
                           },
                           mainColor: Colors.red,
                           scoundColor: Colors.red.shade50,

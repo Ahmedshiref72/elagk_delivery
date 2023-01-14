@@ -56,7 +56,10 @@ class NotificationScreen extends StatelessWidget {
                                   return
                                     NotificationItem(
                                       orderTime: NotificationCubit.get(context).notifications[index].createdAt.toString(),
-                                      onTap: () {  },
+                                      onTap: ()
+                                      {
+
+                                      },
                                       orderNumber: NotificationCubit.get(context).notifications[index].notifiactionId.toString(),
                                     );
                                 },

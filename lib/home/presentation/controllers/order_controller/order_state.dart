@@ -42,3 +42,14 @@ class FollowOrderErrorState  extends OrderState
 
   FollowOrderErrorState(this.error);
 }
+
+
+//notify
+class PostNotificationLoadingState  extends OrderState {}
+class PostNotificationSuccessState  extends OrderState {}
+class PostNotificationErrorState  extends OrderState
+{
+  final String error;
+
+  PostNotificationErrorState(this.error);
+}

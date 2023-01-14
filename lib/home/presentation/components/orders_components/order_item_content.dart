@@ -61,7 +61,7 @@ import '../../../data/models/orders_model.dart';
                       SizedBox(width: mediaQueryWidth(context) * 0.2),
                       Text(
 
-                          '${DateFormat("hh:mm").format(DateTime.parse(
+                          '${DateFormat("hh:mm a").format(DateTime.parse(
                               ordersModel.createdAt.toString()))}',
                           style:
                       TextStyle(
