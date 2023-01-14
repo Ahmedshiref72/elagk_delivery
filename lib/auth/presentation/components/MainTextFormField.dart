@@ -1,6 +1,8 @@
-import 'package:elagk_delivery/shared/global/app_colors.dart';
-import 'package:elagk_delivery/shared/utils/app_values.dart';
+
 import 'package:flutter/material.dart';
+
+import '../../../shared/global/app_colors.dart';
+import '../../../shared/utils/app_values.dart';
 
 class MainTextFormField extends StatelessWidget {
   MainTextFormField({
@@ -36,7 +38,7 @@ class MainTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-        obscureText:isObsecured,
+      obscureText:isObsecured,
       onEditingComplete: () => FocusScope.of(context).nextFocus(),
       validator: validator,
       controller: controller,
@@ -46,8 +48,8 @@ class MainTextFormField extends StatelessWidget {
       textAlignVertical: TextAlignVertical.center,
       // cursorHeight: AppSize.s30,
       style: Theme.of(context).textTheme.displayLarge!.copyWith(
-            height: AppSize.s1_9,
-          ),
+        height: AppSize.s1_9,
+      ),
       decoration: InputDecoration(
         alignLabelWithHint: true,
         isCollapsed: true,
@@ -56,13 +58,13 @@ class MainTextFormField extends StatelessWidget {
         focusColor: focusColor,
         hintText: hint ?? '',
         hintStyle: Theme.of(context).textTheme.displayMedium!.copyWith(
-              color: hintColor,
-            ),
+          color: hintColor,
+        ),
         label: Text(
           label,
           style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                color: AppColors.lightGrey,
-              ),
+            color: AppColors.lightGrey,
+          ),
         ),
         contentPadding: const EdgeInsets.only(
           right: AppPadding.p20,

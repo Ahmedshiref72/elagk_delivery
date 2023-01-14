@@ -99,7 +99,7 @@ class ResetPasswordScreen extends StatelessWidget {
                           return 'Password is Weak';
                         },
                       ),
-                      SizedBox(height: mediaQueryHeight(context) / AppSize.s20),
+                      SizedBox(height: mediaQueryHeight(context) / AppSize.s15),
                       BlocConsumer<ResetPasswordCubit, ResetPasswordStates>(
                         listener: (context, state) {
                           if (state is ResetPassSuccessState) {

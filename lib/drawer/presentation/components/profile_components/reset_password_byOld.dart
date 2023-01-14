@@ -14,6 +14,7 @@ import 'package:flutter_pw_validator/flutter_pw_validator.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import '../../../../shared/components/toast_component.dart';
 import '../../../../shared/global/app_colors.dart';
+import '../../../../shared/utils/app_bar_icon.dart';
 import '../../../../shared/utils/app_routes.dart';
 import '../../../../shared/utils/app_strings.dart';
 import '../../../../shared/utils/app_values.dart';
@@ -45,135 +46,150 @@ class ResetPasswordScreenByOldPassword extends StatelessWidget {
                 screenRoute: Routes.notification,
               );
             },
-            actionWidget: Icon(Icons.add),
+            actionWidget:AppBarIcon(),
           ),
           resizeToAvoidBottomInset: true,
-          body: ScreenBackground(
-            child: Center(
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.all(AppPadding.p15),
-                child: Form(
-                  key: _changePasswordformKey,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const LogoWidget(),
-                      const AuthTitleAndSubtitle(
-                        authTitle: AppStrings.changePassword,
-                        authSubtitle: AppStrings.pleaseEnterOldPass,
-                      ),
-                      MainTextFormField(
-                        isObsecured: true,
-                        controller: _oldPasswordController,
-                        label: AppStrings.oldPassword,
-                        hint: AppStrings.passwordExample,
-                        hintColor: AppColors.lightGrey,
-                        inputType: TextInputType.visiblePassword,
-                        textDirection: TextDirection.ltr,
+          body:  BlocConsumer<ProfileCubit,ProfileStates>(
+            listener: (context, state) {
+              if (state is ProfileChangePasswordSuccessState) {
+                {
+                  showToast(
+                      text: AppStrings.resetPassword,
+                      state: ToastStates.SUCCESS);
 
-                        validator: (value) {
-                          if (value!.length < AppSize.s8) {
-                            return AppStrings.enterValidPassword;
-                          } else {
-                            return null;
-                          }
-                        },                      ),
-                      SizedBox(height: mediaQueryHeight(context) / AppSize.s30),
-                      MainTextFormField(
-                        controller: _newPasswordController,
-                        label: AppStrings.newPassword,
-                        hint: AppStrings.passwordExample,
-                        hintColor: AppColors.lightGrey,
-                        inputType: TextInputType.visiblePassword,
-                        textDirection: TextDirection.ltr,
+                }
 
-                        isObsecured: false,
-                        validator: (value) {
-                          if (value!.length < AppSize.s8) {
-                            return AppStrings.enterValidPassword;
-                          } else {
-                            return null;
-                          }
-                        },
-                      ),
-                      SizedBox(height: mediaQueryHeight(context) / AppSize.s30),
-                      FlutterPwValidator(
-                        successColor: AppColors.primary,
-                        controller: _newPasswordController,
-                        minLength: 8,
-                        uppercaseCharCount: 1,
-                        numericCharCount: 3,
-                        specialCharCount: 1,
-                        normalCharCount: 1,
-                        width: mediaQueryWidth(context)*.8,
-                        height: 150,
-                        onSuccess: (){
+              } else if (state is ProfileChangePasswordErrorState) {
+                showToast(
+                    text: AppStrings.erorrResetPassword,
+                    state: ToastStates.ERROR);
+              }
+            },
+            builder: (context,state){
 
-                          return 'Success';
-                        },
-                        onFail: (){
-                          return 'Password is Weak';
-                        },
-                      ),
-                      SizedBox(height: mediaQueryHeight(context) / AppSize.s20),
-                      BlocConsumer<ProfileCubit, ProfileStates>(
-                        listener: (context, state) {
-                          if (state is ProfileChangePasswordSuccessState) {
-                            {
-                              showToast(
-                                  text: AppStrings.resetPassword,
-                                  state: ToastStates.SUCCESS);
+              if (state is ProfileChangePasswordSuccessState) {
+                _newPasswordController.text="";
+                _oldPasswordController.text="";
 
-                            }
+              }
+              return ScreenBackground(
 
-                          } else if (state is ProfileChangePasswordErrorState) {
-                            showToast(
-                                text: AppStrings.erorrResetPassword,
-                                state: ToastStates.ERROR);
-                          }
-                        },
-                        builder: (context, state) {
+                child: Center(
+                  child: SingleChildScrollView(
+                    padding: const EdgeInsets.all(AppPadding.p15),
+                    child: Form(
+                      key: _changePasswordformKey,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const LogoWidget(),
+                          const AuthTitleAndSubtitle(
+                            authTitle: AppStrings.changePassword,
+                            authSubtitle: AppStrings.pleaseEnterOldPass,
+                          ),
+                          MainTextFormField(
+                            isObsecured:ProfileCubit.get(context).isObsecured ,
+                            suffixIcon: IconButton(
+                                color: Colors.white,
+                                icon: ProfileCubit.get(context).isObsecured?Icon(Icons.visibility,color: AppColors.blue,):
+                                Icon(Icons.visibility_off,color: AppColors.blue,),
+                                onPressed: (){
+                                  ProfileCubit.get(context).changeVisibility();
+                                }),
+                            controller: _oldPasswordController,
+                            label: AppStrings.oldPassword,
+                            hint: AppStrings.passwordExample,
+                            hintColor: AppColors.lightGrey,
+                            inputType: TextInputType.visiblePassword,
+                            textDirection: TextDirection.ltr,
 
-                          if (state is ProfileChangePasswordSuccessState) {
-                              _newPasswordController.text="";
-                              _oldPasswordController.text="";
+                            validator: (value) {
+                              if (value!.length < AppSize.s8) {
+                                return AppStrings.enterValidPassword;
+                              } else {
+                                return null;
+                              }
+                            },                      ),
+                          SizedBox(height: mediaQueryHeight(context) / AppSize.s30),
+                          MainTextFormField(
+                            isObsecured:ProfileCubit.get(context).isObsecured ,
+                            suffixIcon: IconButton(
+                                color: Colors.white,
+                                icon: ProfileCubit.get(context).isObsecured?Icon(Icons.visibility,color: AppColors.blue,):
+                                Icon(Icons.visibility_off,color: AppColors.blue,),
+                                onPressed: (){
+                                  ProfileCubit.get(context).changeVisibility();
+                                }),
+                            controller: _newPasswordController,
+                            label: AppStrings.newPassword,
+                            hint: AppStrings.passwordExample,
+                            hintColor: AppColors.lightGrey,
+                            inputType: TextInputType.visiblePassword,
+                            textDirection: TextDirection.ltr,
 
-                          }
+                            validator: (value) {
+                              if (value!.length < AppSize.s8) {
+                                return AppStrings.enterValidPassword;
+                              } else {
+                                return null;
+                              }
+                            },
+                          ),
+                          SizedBox(height: mediaQueryHeight(context) / AppSize.s30),
+                          FlutterPwValidator(
+                            successColor: AppColors.primary,
+                            controller: _newPasswordController,
+                            minLength: 8,
+                            uppercaseCharCount: 1,
+                            numericCharCount: 3,
+                            specialCharCount: 1,
+                            normalCharCount: 1,
+                            width: mediaQueryWidth(context)*.8,
+                            height: 150,
+                            onSuccess: (){
 
-                          return ConditionalBuilder(
+                              return 'Success';
+                            },
+                            onFail: (){
+                              return 'Password is Weak';
+                            },
+                          ),
+                          SizedBox(height: mediaQueryHeight(context) / AppSize.s20),
+                          ConditionalBuilder(
                             condition: state is! ProfileChangePasswordLoadingState,
                             builder: (context) => MainButton(
-                              title: AppStrings.codeSendButton,
-                              onPressed: () async
-                              {
-                                _hasInternet =
-                                await InternetConnectionChecker().hasConnection;
-                                if (_hasInternet) {
-                                  if (_changePasswordformKey.currentState!.validate()) {
-                                    ProfileCubit.get(context)
-                                        .changePassword(
-                                        oldPassword: _oldPasswordController.text.trim(),
-                                        newPassword: _newPasswordController.text.trim()
+                                title: AppStrings.codeSendButton,
+                                onPressed: () async
+                                {
+                                  _hasInternet =
+                                  await InternetConnectionChecker().hasConnection;
+                                  if (_hasInternet) {
+                                    if (_changePasswordformKey.currentState!.validate()) {
+                                      ProfileCubit.get(context)
+                                          .changePassword(
+                                          oldPassword: _oldPasswordController.text.trim(),
+                                          newPassword: _newPasswordController.text.trim()
 
-                                    );
+                                      );
+                                    }
+
                                   }
-
                                 }
-                              }
 
 
                             ),
                             fallback: (context) =>
                             const CircularProgressIndicator(),
-                          );
-                        },
+                          )
+
+                        ],
                       ),
-                    ],
+                    ),
                   ),
                 ),
-              ),
-            ),
+              );
+            },
           ),
         ),
       ),
