@@ -31,9 +31,8 @@ class OrderCubit extends Cubit<OrderState> {
   Future<void> postOrderDeliverDone({
     required orderId}) async {
     emit(OrderDeliverDoneLoadingState());
-    DioHelper.postData(
-      url: ApiConstants.postOrderDeliverDone(
-          CacheHelper.getData(key: AppConstants.userId), orderId),
+    Dio().patch(
+      ApiConstants.postOrderDeliverDone(orderId),
 
     ).then((value) {
       emit(OrderDeliverDoneSuccessState());

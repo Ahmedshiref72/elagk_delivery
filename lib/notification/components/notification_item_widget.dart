@@ -39,18 +39,6 @@ class NotificationItem extends StatelessWidget {
                     padding: const EdgeInsets.all(AppPadding.p10),
                     child: Row(
                       children: [
-                        Text(
-
-                          DateFormat("HH:mm").format(
-                            DateTime.parse(orderTime),),
-                          style: Theme.of(context).textTheme.displaySmall,
-                        ),
-                        const Spacer(),
-                        Text(
-                          "${AppStrings.orderArrived}$orderNumber",
-                          style: Theme.of(context).textTheme.displaySmall,
-                        ),
-                        SizedBox(width: mediaQueryWidth(context) / AppSize.s50),
                         Container(
                             width: AppSize.s35,
                             height: AppSize.s35,
@@ -62,7 +50,18 @@ class NotificationItem extends StatelessWidget {
                               Icons.notifications_none,
                               color: Colors.white,
                             )),
+                        SizedBox(width: mediaQueryWidth(context) / AppSize.s50),
+                        Text(
+                          "${AppStrings.orderArrived}$orderNumber",
+                          style: Theme.of(context).textTheme.displaySmall,
+                        ),
+                        const Spacer(),
+                        Text(
 
+                          DateFormat("hh:mm").format(
+                            DateTime.parse(orderTime),),
+                          style: Theme.of(context).textTheme.displaySmall,
+                        ),
                       ],
                     )),
               )),

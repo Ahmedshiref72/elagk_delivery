@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../../shared/utils/app_values.dart';
 
-class ScoundButton extends StatelessWidget {
-  const ScoundButton({Key? key, required this.onPressed, required this.mainColor, required this.scoundColor, required this.text,}) : super(key: key);
+class Button extends StatelessWidget {
+  const Button({Key? key, required this.onPressed, required this.mainColor, required this.scoundColor, required this.text,}) : super(key: key);
   final Function onPressed;
   final Color mainColor;
   final Color scoundColor;
@@ -17,14 +17,14 @@ class ScoundButton extends StatelessWidget {
       onTap: () => onPressed(),
       child: Container(
         decoration: BoxDecoration(color:scoundColor),
-        width: AppSize.s100,
+        width: AppSize.s200,
         height: AppSize.s50,
         child: Center(
             child: Text(
-          text,
-          style: TextStyle(
-              color:mainColor, fontSize: 20, fontWeight: FontWeight.bold),
-        )),
+              text,
+              style: TextStyle(
+                  color:mainColor, fontSize: 20, fontWeight: FontWeight.bold),
+            )),
       ),
     );
   }

@@ -38,6 +38,7 @@ class OrderInformation extends StatelessWidget {
                   physics: const BouncingScrollPhysics(),
                   child: Column(
                     children:  [
+
                    OrderInformationContent(Order: Order,),
                     ],
                   ),

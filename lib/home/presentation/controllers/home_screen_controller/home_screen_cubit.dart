@@ -1,5 +1,3 @@
-
-
 import 'dart:async';
 
 import 'package:dio/dio.dart';
@@ -182,8 +180,6 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
         title: "${lastNotification!.notifiactionTitle}",
         body: "${lastNotification!.notifiactionDescription}",
         fln: flutterLocalNotificationsPlugin);
-
-
 
   }
 

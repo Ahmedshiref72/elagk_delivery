@@ -6,7 +6,9 @@ import 'package:elagk_delivery/shared/utils/app_strings.dart';
 import 'package:elagk_delivery/shared/utils/app_values.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
 import '../../shared/global/app_colors.dart';
+import '../../shared/utils/app_assets.dart';
 import '../components/notificationAppBar.dart';
 import '../components/notification_item_widget.dart';
 
@@ -69,7 +71,20 @@ class NotificationScreen extends StatelessWidget {
                   ),
                 ):
                 (NotificationCubit.get(context).notifications.isEmpty&& state is GetNotificationSuccessState)?
-                Center(child: NoDataWidget(AppStrings.noNotificationsYet)):
+                Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Lottie.asset(JsonAssets.ordersDone),
+                      Text(
+                        AppStrings.noOrdersAvailable,
+                        maxLines: 1,
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.displayLarge,
+                      )
+                    ],
+                  ),
+                ):
                 Center(
                   child: CircularProgressIndicator(
                     color: AppColors.primary,
