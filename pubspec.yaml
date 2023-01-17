@@ -78,8 +78,6 @@ dependencies:
   location: ^4.4.0
   intl:
   flutter_local_notifications:
-  rxdart:
-  workmanager:
 
 
 
