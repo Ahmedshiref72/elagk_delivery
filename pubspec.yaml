@@ -73,7 +73,6 @@ dependencies:
   flutter_verification_code: ^1.1.6
   dotted_border: ^2.0.0+3
   dotted_line:
-  flutter_geocoder:
   permission_handler: ^10.2.0
   location: ^4.4.0
   intl:
