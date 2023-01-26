@@ -7,6 +7,8 @@ class AppStrings {
   static const String thenRestartApp= "ثم اعد تشغيل التطبيق";
 
 // forget password
+  static const String pleaseGiveGPSPermission= "من فضلك قم باعطاء التطبيق صلاحيه الوصول الى GPS من اعدادات جهازك";
+
   static const String codeSendButton  = "اعاده تعيين كلمه المرور";
   static const String activator  = "تفعيل الحساب";
   static const String pleasePass  = "برجاء ادخال كلمة المرور";

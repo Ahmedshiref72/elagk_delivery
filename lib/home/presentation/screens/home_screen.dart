@@ -36,7 +36,8 @@ class HomeScreen extends StatelessWidget {
                   actionWidget: AppBarIcon(),
                   context,
                 ),
-                body:OrdersContents(),
+                body:
+                OrdersContents(),
               floatingActionButton: FloatingActionButton(
                 onPressed: () {
                   HomeScreenCubit.get(context).getOrders();  },

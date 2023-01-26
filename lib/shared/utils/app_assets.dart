@@ -57,6 +57,8 @@ class ImageAssets {
 class JsonAssets {
   // Offline screen
   static const String noInternet = '$JSON_PATH/no-internet.json';
+  static const String permissionDenied = '$JSON_PATH/permissionDenied.json';
+
   // Notifications screen
   static const String noNotifications = '$JSON_PATH/no-notification.json';
   // Home screen

@@ -105,9 +105,6 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
 
   }
 
-
-
-
   void getNotify()
   {
 
@@ -123,6 +120,7 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
     timer = Timer.periodic(Duration(seconds: 20), (Timer t)=>getNotifications());
 
   }
+
 
 
 }
