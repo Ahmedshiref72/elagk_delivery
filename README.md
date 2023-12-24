@@ -9,7 +9,7 @@
 
 
 ## Download App
-<a href="https://github.com/Ahmedshiref72/elagk_pharmacy1/releases/download/v1/pharmacy.apk"><img src="https://playerzon.com/asset/download.png" width="200"></img></a>
+<a href="https://github.com/Ahmedshiref72/elagk_delivery/releases/download/v1/delivery.apk"><img src="https://playerzon.com/asset/download.png" width="200"></img></a>
 
 ## Screenshots
 <table width="100%">
